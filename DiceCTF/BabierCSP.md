@@ -24,4 +24,4 @@ script タグの nonce 属性には、CSP(Content Security Policy) によって 
 ```js
 app.use('/' + SECRET, express.static(__dirname + "/secret"));
 ```
-とあるため、 `https://babier-csp.dicec.tf/{cookieのsecretの値}` をアクセスしてみると、HTMLのコメントにフラグが書いてあります。
+とあるため、 `https://babier-csp.dicec.tf/{cookieのsecretの値}` にアクセスしてみると、ソースのコメントにフラグが書いてあります。
