@@ -9,9 +9,6 @@ const NONCE = crypto.randomBytes(16).toString('base64');
 
 const template = name => `
 <html>
-<head>
-    <meta charset="utf-8">
-</head>
 ${name === '' ? '': `<h1>${name}</h1>`}
 <a href='#' id=elem>View Fruit</a>
 
