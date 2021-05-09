@@ -307,7 +307,7 @@ Done!
 >
 ```
 
-どうにかして内部のファイルを出力するような関数を実行させたいところですが、静的なオブジェクトしか渡せないのでどうすればよいか考えました。考えても思いつかなかったので「pickle vulnerability」とかで検索すると任意コード実行の脆弱性(参考: https://blog.nelhage.com/2011/03/exploiting-pickle/)がありました。  
+どうにかして内部のファイルを出力するような関数を実行させたいところですが、静的なオブジェクトしか渡せないのでどうすればよいか考えました。考えても思いつかなかったので「pickle vulnerability」とかで検索すると任意コード実行の脆弱性(参考: [https://blog.nelhage.com/2011/03/exploiting-pickle/](https://blog.nelhage.com/2011/03/exploiting-pickle/))がありました。  
 これを利用して以下のコードを書いて出力をimportに渡せばフラグが得られます。
 
 ```py
@@ -372,7 +372,7 @@ Thank you to...
 \- The ImageMagick caption command for meme generation  
 Note: The source code for this bot is NOT publicly available, due to the CyberDawgs' extreme anti-open-source and pro-proprietary stance. We don't NEED public auditing. All of the code in this bot is totally and completely secure.
   
-Rust、Serenity Discordライブラリ、ImageMagickのcaptionコマンドを使っているということなので、それぞれで内部ファイルを読み込んで表示できそうな脆弱性がないか検索してみると、「imagemagick caption from file」で検索してImageMagickのcaptionコマンドでファイルから読み込んでテキストを画像に書き込める機能(参考: https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322)が見つかりました。
+Rust、Serenity Discordライブラリ、ImageMagickのcaptionコマンドを使っているということなので、それぞれで内部ファイルを読み込んで表示できそうな脆弱性がないか検索してみると、「imagemagick caption from file」で検索してImageMagickのcaptionコマンドでファイルから読み込んでテキストを画像に書き込める機能(参考: [https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322](https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322))が見つかりました。
 
 以下のMDLを送るとフラグが手に入ります。
 
