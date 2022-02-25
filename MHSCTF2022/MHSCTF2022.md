@@ -1,4 +1,4 @@
-# MHSCTF2022 簡易Writeup
+# MHSCTF 2022 簡易Writeup
 
 ## 目次
 
