@@ -2,15 +2,15 @@
 
 ## 目次
 
-- [Peanuts](#Peanuts)
-- [Perspective](#Perspective)
-- [Where the Wild Cards Are 2](#Where-the-Wild-Cards-Are 2)
-- [Cloudy w/ a Chance of Rain](#Cloudy-w/-a-Chance-of-Rain)
-- [Reconstruction](#Reconstruction)
-- [Blank Slate 2](#Blank-Slate-2)
-- [Blank Slate 3](#Blank-Slate-3)
-- [Blank Slate 4](#Blank-Slate-4)
-- [Piece It Together](#Piece-It-Together)
+- [Peanuts](#peanuts)
+- [Perspective](#perspective)
+- [Where the Wild Cards Are 2](#where-the-wild-cards-are-2)
+- [Cloudy w/ a Chance of Rain](#cloudy-w-a-chance-of-rain)
+- [Reconstruction](#reconstruction)
+- [Blank Slate 2](#blank-slate-2)
+- [Blank Slate 3](#blank-slate-3)
+- [Blank Slate 4](#blank-slate-4)
+- [Piece It Together](#piece-it-together)
 
 ## Peanuts
 
