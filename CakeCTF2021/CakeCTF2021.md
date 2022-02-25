@@ -1,5 +1,7 @@
 # CakeCTF 2021 Writeup
 
+注意: 書きかけです
+
 ## 目次
 
 - Pwn
