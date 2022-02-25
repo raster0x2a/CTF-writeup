@@ -4,7 +4,7 @@
 [babier-csp.dicec.tf](babier-csp.dicec.tf)  
 [Admin Bot](https://us-east1-dicegang.cloudfunctions.net/ctf-2021-admin-bot?challenge=babier-csp)  
 
-The admin will set a cookie `secret` equal to `config.secret` in [index.js](https://github.com/raster0x2a/CTF-writeup/blob/master/DiceCTF/index.js).
+The admin will set a cookie `secret` equal to `config.secret` in [index.js](https://github.com/raster0x2a/CTF-writeup/blob/master/DiceCTF2021/index.js).
 
 ## 解説
 まず [babier-csp.dicec.tf](babier-csp.dicec.tf) は name に渡された文字列をそのまま表示させています。そのため XSS が期待できますが、 `<script>alert('ok')</script>` などを直接入れても以下のように怒られます。  
