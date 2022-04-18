@@ -1,0 +1,4 @@
+theme = "terminimal"
+
+# Sass compilation is required
+compile_sass = true
