@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CTF Writeups</title>
+    <link>/</link>
+    <description>Recent content on CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/cakectf2021/cakectf2021/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/cakectf2021/cakectf2021/</guid>
+      <description> CakeCTF 2021 Writeup 注意: 書きかけです
+目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful   MofuMofu Diary - 110 問題 Would you like to see some mofu-mofu pictures?
+* The flag is located at /flag.txt
+mofumofu_diary_82c31e779086e3079e0ac62643e14fed.tar.gz(を解凍したもの)
+author: ptr-yudai
+解説 index.phpとutil.phpを読むと、だいたいの動きとしてCookieのcache中にdataとexpiryがあり、dataの中には画像ファイル名であるname、画像の説明であるdescriptionがあり、expiryの日付が一週間以上前の場合は再度Cookie情報からファイルの再読み込みをして表示しています。
+重要な部分はCookie情報からファイルの再読み込みをしていることで、Cookieを編集することで自由なファイルを読み込ませることができる点です。
+再読み込みさせるためにexpiryを適当に1週間以上前の値にし、nameが/flag.txtになるデータを作ります。例えばChromeの開発者モードのApplicationタブで以下のようなものをパーセントエンコーディングしてcacheに入れます。
+{&amp;quot;data&amp;quot;:[{&amp;quot;name&amp;quot;:&amp;quot;\/flag.txt&amp;quot;,&amp;quot;description&amp;quot;:&amp;quot;flag&amp;quot;}],&amp;quot;expiry&amp;quot;:1530722670}
+リロードするとbase64エンコードされたフラグが手に入るのでデコードして終了。
+UAF4b - 113 問題 warmuppwn You don&amp;rsquo;t dare to try learning Use-after-Free?
+nc pwn.cakectf.com 9001
+author: ptr-yudai
+解説 </description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/dawgctf2021/dawgctf2021/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/dawgctf2021/dawgctf2021/</guid>
+      <description>DawgCTF 2021 Writeup 目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful   No Step On Snek 問題 75 points
+I heard you guys like python pwnables
+nc umbccd.io 4000
+Author: trashcanna
+解説 ncコマンドで接続すると以下のように表示されます。
+Welcome to the aMAZEing Maze Your goal is to get from one side of the board to the other. Your character is represented by &amp;quot;OO&amp;quot; and the finish will be &amp;quot;FF&amp;quot; W/w - Move up!</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/dicectf2021/babiercsp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/dicectf2021/babiercsp/</guid>
+      <description>web/Babier CSP 問題 babier-csp.dicec.tf
+Admin Bot
+The admin will set a cookie secret equal to config.secret in index.js.
+解説 まず babier-csp.dicec.tf は name に渡された文字列をそのまま表示させています。そのため XSS が期待できますが、 &amp;lt;script&amp;gt;alert(&#39;ok&#39;)&amp;lt;/script&amp;gt; などを直接入れても以下のように怒られます。
+Refused to execute inline script because it violates the following Content Security Policy directive: &amp;quot;script-src &#39;nonce-LRGWAXOY98Es0zz0QOVmag==&#39;&amp;quot;. Either the &#39;unsafe-inline&#39; keyword, a hash (&#39;sha256-GhSELej6D4No8Cu4c6BlA7SQooAXc4iM9HQ5s9uW7Gw=&#39;), or a nonce (&#39;nonce-...&#39;) is required to enable inline execution.  script タグの nonce 属性には、CSP(Content Security Policy) によって JavaScript の実行を制限し、XSS などを防ぐ機能があります。しかし nonce の値が予測できてしまえば意味をなさないため、本来はリクエストごとにランダムな文字列を生成しなければならないのですが、このページでは LRGWAXOY98Es0zz0QOVmag== で固定されています。そのため &amp;lt;script nonce=LRGWAXOY98Es0zz0QOVmag==&amp;gt;hoge&amp;lt;/script&amp;gt; という形式で怒られずに任意のスクリプトをインジェクションできます。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/mhsctf2022/mhsctf2022/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/mhsctf2022/mhsctf2022/</guid>
+      <description>MHSCTF 2022 簡易Writeup 目次  Peanuts Perspective Where the Wild Cards Are 2 Cloudy w/ a Chance of Rain Reconstruction Blank Slate 2 Blank Slate 3 Blank Slate 4 Piece It Together Avengers Assemble Blatant Corruption 1 chal 2 categories  Peanuts ググるとPigpen Cipher Fontというものが見つかる。ファベットとの対応が3パターンほど見つかるという罠がある。私は3つ目で正解でした。
+Perspective stlファイルを開けるアプリで開いて真上から確認する。上から見てもわかりずらい。
+Where the Wild Cards Are 2 [a-z](?=[A-Z]{2,}\d{3,})
+\w
+1つ目は肯定先読みを使う。2つ目は\wというメタ文字があるのでそれが最短。
+Cloudy w/ a Chance of Rain n = int(input()) for _ in range(n): lst = list(map(int, input().</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/picoctf2022/picoctf2022/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/picoctf2022/picoctf2022/</guid>
+      <description>picoCTF 2022 Writeup 目次  Web  Forbidden Paths SQL Direct Power Cookie Roboto Sans Secrets SQLiLite Search source  Binary(Pwn)  flag leek File types RPS buffer overflow 0 buffer overflow 1 buffer overflow 2 x-sixty-what  Rev  Fresh Java Bbbbloat unpackme   Forbidden Paths 相対パスを使う。 ../../../../flag.txt
+SQL Direct DBに接続して\dからのselect * from flags
+Power Cookie CookieのisAdminを1にして読み込む。
+Roboto Sans robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。
+Secrets ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。
+SQLiLite シンプルなSQLインジェクション。
+Search source CSSファイル内のコメントにフラグがある。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/top/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/top/</guid>
+      <description>top</description>
+    </item>
+    
+  </channel>
+</rss>

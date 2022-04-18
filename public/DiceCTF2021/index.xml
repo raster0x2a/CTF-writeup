@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DiceCTF2021s on CTF Writeups</title>
+    <link>/dicectf2021/</link>
+    <description>Recent content in DiceCTF2021s on CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="/dicectf2021/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/dicectf2021/babiercsp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/dicectf2021/babiercsp/</guid>
+      <description>web/Babier CSP 問題 babier-csp.dicec.tf
+Admin Bot
+The admin will set a cookie secret equal to config.secret in index.js.
+解説 まず babier-csp.dicec.tf は name に渡された文字列をそのまま表示させています。そのため XSS が期待できますが、 &amp;lt;script&amp;gt;alert(&#39;ok&#39;)&amp;lt;/script&amp;gt; などを直接入れても以下のように怒られます。
+Refused to execute inline script because it violates the following Content Security Policy directive: &amp;quot;script-src &#39;nonce-LRGWAXOY98Es0zz0QOVmag==&#39;&amp;quot;. Either the &#39;unsafe-inline&#39; keyword, a hash (&#39;sha256-GhSELej6D4No8Cu4c6BlA7SQooAXc4iM9HQ5s9uW7Gw=&#39;), or a nonce (&#39;nonce-...&#39;) is required to enable inline execution.  script タグの nonce 属性には、CSP(Content Security Policy) によって JavaScript の実行を制限し、XSS などを防ぐ機能があります。しかし nonce の値が予測できてしまえば意味をなさないため、本来はリクエストごとにランダムな文字列を生成しなければならないのですが、このページでは LRGWAXOY98Es0zz0QOVmag== で固定されています。そのため &amp;lt;script nonce=LRGWAXOY98Es0zz0QOVmag==&amp;gt;hoge&amp;lt;/script&amp;gt; という形式で怒られずに任意のスクリプトをインジェクションできます。</description>
+    </item>
+    
+  </channel>
+</rss>

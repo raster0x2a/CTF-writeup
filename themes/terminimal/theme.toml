@@ -2,7 +2,7 @@ name = "terminimal"
 description = "A simple, minimal retro theme"
 license = "MIT"
 homepage = "https://github.com/pawroman/zola-theme-terminimal/"
-min_version = "0.5.1"
+min_version = "0.40.1"
 
 # An optional live demo URL
 demo = ""

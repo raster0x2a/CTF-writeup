@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/cakectf2021/cakectf2021/</loc>
+  </url>
+  
+  <url>
+    <loc>/dawgctf2021/dawgctf2021/</loc>
+  </url>
+  
+  <url>
+    <loc>/dicectf2021/babiercsp/</loc>
+  </url>
+  
+  <url>
+    <loc>/mhsctf2022/mhsctf2022/</loc>
+  </url>
+  
+  <url>
+    <loc>/picoctf2022/picoctf2022/</loc>
+  </url>
+  
+  <url>
+    <loc>/top/</loc>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/cakectf2021/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/dawgctf2021/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/dicectf2021/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/mhsctf2022/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/picoctf2022/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
