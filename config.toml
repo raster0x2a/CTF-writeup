@@ -1,3 +1,4 @@
+base_url = "https://raster0x2a.github.io/CTF-writeup/"
 theme = "terminimal"
 
 # Sass compilation is required
