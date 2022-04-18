@@ -3,7 +3,6 @@
 ## 目次
 
 - Web
-  - [Local Authority](#local-authority)
   - [Forbidden Paths](#forbidden-paths)
   - [SQL Direct](#sql-direct)
   - [Power Cookie](#power-cookie)
