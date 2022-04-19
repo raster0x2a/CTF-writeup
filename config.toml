@@ -4,6 +4,7 @@ theme = "terminal"
 
 languageCode = "en"
 paginate = 5
+publicDir = "docs"
 
 [params]
   # dir name of your main content (default is `content/posts`).
