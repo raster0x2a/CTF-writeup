@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title> :: CTF Writeups</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MHSCTF 2022 簡易Writeup 目次  Peanuts Perspective Where the Wild Cards Are 2 Cloudy w/ a Chance of Rain Reconstruction Blank Slate 2 Blank Slate 3 Blank Slate 4 Piece It Together Avengers Assemble Blatant Corruption 1 chal 2 categories  Peanuts ググるとPigpen Cipher Fontというものが見つかる。ファベットとの対応が3パターンほど見つかるという罠がある。私は3つ目で正解でした。
+Perspective stlファイルを開けるアプリで開いて真上から確認する。上から見てもわかりずらい。
+Where the Wild Cards Are 2 [a-z](?=[A-Z]{2,}\d{3,})
+\w
+1つ目は肯定先読みを使う。2つ目は\wというメタ文字があるのでそれが最短。
+Cloudy w/ a Chance of Rain n = int(input()) for _ in range(n):  lst = list(map(int, input()." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/mhsctf2022/mhsctf2022/" />
+
+
+
+
+<link rel="stylesheet" href="assets/style.css">
+
+  <link rel="stylesheet" href="assets/%25!s%28%3cnil%3e%29.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="img/favicon/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="">
+<meta property="og:description" content="MHSCTF 2022 簡易Writeup 目次  Peanuts Perspective Where the Wild Cards Are 2 Cloudy w/ a Chance of Rain Reconstruction Blank Slate 2 Blank Slate 3 Blank Slate 4 Piece It Together Avengers Assemble Blatant Corruption 1 chal 2 categories  Peanuts ググるとPigpen Cipher Fontというものが見つかる。ファベットとの対応が3パターンほど見つかるという罠がある。私は3つ目で正解でした。
+Perspective stlファイルを開けるアプリで開いて真上から確認する。上から見てもわかりずらい。
+Where the Wild Cards Are 2 [a-z](?=[A-Z]{2,}\d{3,})
+\w
+1つ目は肯定先読みを使う。2つ目は\wというメタ文字があるのでそれが最短。
+Cloudy w/ a Chance of Rain n = int(input()) for _ in range(n):  lst = list(map(int, input()." />
+<meta property="og:url" content="/mhsctf2022/mhsctf2022/" />
+<meta property="og:site_name" content="CTF Writeups" />
+
+  
+    <meta property="og:image" content="img/favicon/%!s().png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/mhsctf2022/mhsctf2022/"></a></h1>
+  <div class="post-meta">
+    
+    
+    
+  </div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="mhsctf-2022-簡易writeup">MHSCTF 2022 簡易Writeup<a href="#mhsctf-2022-簡易writeup" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="目次">目次<a href="#目次" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<ul>
+<li><a href="#peanuts">Peanuts</a></li>
+<li><a href="#perspective">Perspective</a></li>
+<li><a href="#where-the-wild-cards-are-2">Where the Wild Cards Are 2</a></li>
+<li><a href="#cloudy-w-a-chance-of-rain">Cloudy w/ a Chance of Rain</a></li>
+<li><a href="#reconstruction">Reconstruction</a></li>
+<li><a href="#blank-slate-2">Blank Slate 2</a></li>
+<li><a href="#blank-slate-3">Blank Slate 3</a></li>
+<li><a href="#blank-slate-4">Blank Slate 4</a></li>
+<li><a href="#piece-it-together">Piece It Together</a></li>
+<li><a href="#avengers-assemble">Avengers Assemble</a></li>
+<li><a href="#blatant-corruption">Blatant Corruption</a></li>
+<li><a href="#1-chal-2-categories">1 chal 2 categories</a></li>
+</ul>
+<h2 id="peanuts">Peanuts<a href="#peanuts" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>ググると<a href="https://fontmeme.com/jfont/pigpen-cipher-font/">Pigpen Cipher Font</a>というものが見つかる。ファベットとの対応が3パターンほど見つかるという罠がある。私は3つ目で正解でした。</p>
+<h2 id="perspective">Perspective<a href="#perspective" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>stlファイルを開けるアプリで開いて真上から確認する。上から見てもわかりずらい。</p>
+<h2 id="where-the-wild-cards-are-2">Where the Wild Cards Are 2<a href="#where-the-wild-cards-are-2" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p><code>[a-z](?=[A-Z]{2,}\d{3,})</code><br>
+<code>\w</code></p>
+<p>1つ目は肯定先読みを使う。2つ目は\wというメタ文字があるのでそれが最短。</p>
+<h2 id="cloudy-w-a-chance-of-rain">Cloudy w/ a Chance of Rain<a href="#cloudy-w-a-chance-of-rain" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>n <span style="color:#f92672">=</span> int(input())
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(n):
+</span></span><span style="display:flex;"><span>  lst <span style="color:#f92672">=</span> list(map(int, input()<span style="color:#f92672">.</span>split()))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> lst:
+</span></span><span style="display:flex;"><span>    ans <span style="color:#f92672">*=</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> n
+</span></span><span style="display:flex;"><span>  ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">-</span> ans <span style="color:#f92672">/</span> (<span style="color:#ae81ff">100</span> <span style="color:#f92672">**</span> (len(lst) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>  print(int(ans))
+</span></span></code></pre></div><p>試していないのでわからないがループ毎で除算を行ってしまうと誤差で通らないようになってそう。</p>
+<h2 id="reconstruction">Reconstruction<a href="#reconstruction" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>行が&quot;;&ldquo;区切り、列が&rdquo;,&ldquo;区切りになっているので、分割して3つずつRGBに変換。</p>
+<h2 id="blank-slate-2">Blank Slate 2<a href="#blank-slate-2" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>ファイルデータは.gitの中のobjectsに入っているので、Pythonでobjects以下のファイルをzlib形式で解凍するスクリプトを書く。</p>
+<h2 id="blank-slate-3">Blank Slate 3<a href="#blank-slate-3" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>RGBが(0,0,0)と(0,1,0)の部分があるので、(0,1,0)部分を(0,255,0)にした画像を作成。</p>
+<h2 id="blank-slate-4">Blank Slate 4<a href="#blank-slate-4" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>先頭にBOMがあり、以降にゼロ幅スペースと半角スペースが並んでいるので、それぞれ0と1に置き換えて二進数から文字コードで変換。</p>
+<h2 id="piece-it-together">Piece It Together<a href="#piece-it-together" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>二重のHTMLエスケープで難読化されているので変換する。最後のscriptタグの中にcheckpwd()という関数があって怪しいので、関数の中の条件式で使われている文字列を出力するとフラグ。</p>
+<h2 id="avengers-assemble">Avengers Assemble<a href="#avengers-assemble" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>Pythonのdisモジュールで生成されたバイトコード。ドキュメント見ながら気合で読むと整数列にインデックスのmod 7を足してずらしていることがわかる。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span>lst <span style="color:#f92672">=</span> list(map(int, <span style="color:#e6db74">&#34;102 109 99 106 127 53 116 95 122 113 120 118 100 55 51 103 57 128&#34;</span><span style="color:#f92672">.</span>split()))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(lst)):
+</span></span><span style="display:flex;"><span>      lst[i] <span style="color:#f92672">-=</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      print(<span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">.</span>join([chr(n) <span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> lst])) 
+</span></span></code></pre></div><h2 id="blatant-corruption">Blatant Corruption<a href="#blatant-corruption" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>バイナリを見ると0d0a1a0aから始まっており、これはPNGのマジックナンバーの5～8バイト目。1～4バイト目の89504e47を先頭に書き足すとPNGファイルとして読めるようになる。</p>
+<h2 id="1-chal-2-categories">1 chal 2 categories<a href="#1-chal-2-categories" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>まずPythonファイルを読み、画像を逆変換すると、右下に重なっていて読めない文字列が見える。ピクセルのインデックスのmod 4で分解するとフラグの先頭1/3と後ろ2/3に分離できた。後半の重なりは意味の通る文になるように気合で分離するとフラグが得られる。</p>
+
+      </div></div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2022 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

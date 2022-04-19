@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MHSCTF2022s on CTF Writeups</title>
+    <link>/mhsctf2022/</link>
+    <description>Recent content in MHSCTF2022s on CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="/mhsctf2022/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>/mhsctf2022/mhsctf2022/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/mhsctf2022/mhsctf2022/</guid>
+      <description>MHSCTF 2022 簡易Writeup 目次  Peanuts Perspective Where the Wild Cards Are 2 Cloudy w/ a Chance of Rain Reconstruction Blank Slate 2 Blank Slate 3 Blank Slate 4 Piece It Together Avengers Assemble Blatant Corruption 1 chal 2 categories  Peanuts ググるとPigpen Cipher Fontというものが見つかる。ファベットとの対応が3パターンほど見つかるという罠がある。私は3つ目で正解でした。
+Perspective stlファイルを開けるアプリで開いて真上から確認する。上から見てもわかりずらい。
+Where the Wild Cards Are 2 [a-z](?=[A-Z]{2,}\d{3,})
+\w
+1つ目は肯定先読みを使う。2つ目は\wというメタ文字があるのでそれが最短。
+Cloudy w/ a Chance of Rain n = int(input()) for _ in range(n):  lst = list(map(int, input().</description>
+      <content>&lt;h1 id=&#34;mhsctf-2022-簡易writeup&#34;&gt;MHSCTF 2022 簡易Writeup&lt;/h1&gt;
+&lt;h2 id=&#34;目次&#34;&gt;目次&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#peanuts&#34;&gt;Peanuts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#perspective&#34;&gt;Perspective&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#where-the-wild-cards-are-2&#34;&gt;Where the Wild Cards Are 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#cloudy-w-a-chance-of-rain&#34;&gt;Cloudy w/ a Chance of Rain&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#reconstruction&#34;&gt;Reconstruction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#blank-slate-2&#34;&gt;Blank Slate 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#blank-slate-3&#34;&gt;Blank Slate 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#blank-slate-4&#34;&gt;Blank Slate 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#piece-it-together&#34;&gt;Piece It Together&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#avengers-assemble&#34;&gt;Avengers Assemble&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#blatant-corruption&#34;&gt;Blatant Corruption&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#1-chal-2-categories&#34;&gt;1 chal 2 categories&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;peanuts&#34;&gt;Peanuts&lt;/h2&gt;
+&lt;p&gt;ググると&lt;a href=&#34;https://fontmeme.com/jfont/pigpen-cipher-font/&#34;&gt;Pigpen Cipher Font&lt;/a&gt;というものが見つかる。ファベットとの対応が3パターンほど見つかるという罠がある。私は3つ目で正解でした。&lt;/p&gt;
+&lt;h2 id=&#34;perspective&#34;&gt;Perspective&lt;/h2&gt;
+&lt;p&gt;stlファイルを開けるアプリで開いて真上から確認する。上から見てもわかりずらい。&lt;/p&gt;
+&lt;h2 id=&#34;where-the-wild-cards-are-2&#34;&gt;Where the Wild Cards Are 2&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;[a-z](?=[A-Z]{2,}\d{3,})&lt;/code&gt;&lt;br&gt;
+&lt;code&gt;\w&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;1つ目は肯定先読みを使う。2つ目は\wというメタ文字があるのでそれが最短。&lt;/p&gt;
+&lt;h2 id=&#34;cloudy-w-a-chance-of-rain&#34;&gt;Cloudy w/ a Chance of Rain&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; int(input())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(n):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  lst &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; list(map(int, input()&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;split()))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ans &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; lst:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    ans &lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; n
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ans &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; ans &lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt; (&lt;span style=&#34;color:#ae81ff&#34;&gt;100&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt; (len(lst) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  print(int(ans))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;試していないのでわからないがループ毎で除算を行ってしまうと誤差で通らないようになってそう。&lt;/p&gt;
+&lt;h2 id=&#34;reconstruction&#34;&gt;Reconstruction&lt;/h2&gt;
+&lt;p&gt;行が&amp;quot;;&amp;ldquo;区切り、列が&amp;rdquo;,&amp;ldquo;区切りになっているので、分割して3つずつRGBに変換。&lt;/p&gt;
+&lt;h2 id=&#34;blank-slate-2&#34;&gt;Blank Slate 2&lt;/h2&gt;
+&lt;p&gt;ファイルデータは.gitの中のobjectsに入っているので、Pythonでobjects以下のファイルをzlib形式で解凍するスクリプトを書く。&lt;/p&gt;
+&lt;h2 id=&#34;blank-slate-3&#34;&gt;Blank Slate 3&lt;/h2&gt;
+&lt;p&gt;RGBが(0,0,0)と(0,1,0)の部分があるので、(0,1,0)部分を(0,255,0)にした画像を作成。&lt;/p&gt;
+&lt;h2 id=&#34;blank-slate-4&#34;&gt;Blank Slate 4&lt;/h2&gt;
+&lt;p&gt;先頭にBOMがあり、以降にゼロ幅スペースと半角スペースが並んでいるので、それぞれ0と1に置き換えて二進数から文字コードで変換。&lt;/p&gt;
+&lt;h2 id=&#34;piece-it-together&#34;&gt;Piece It Together&lt;/h2&gt;
+&lt;p&gt;二重のHTMLエスケープで難読化されているので変換する。最後のscriptタグの中にcheckpwd()という関数があって怪しいので、関数の中の条件式で使われている文字列を出力するとフラグ。&lt;/p&gt;
+&lt;h2 id=&#34;avengers-assemble&#34;&gt;Avengers Assemble&lt;/h2&gt;
+&lt;p&gt;Pythonのdisモジュールで生成されたバイトコード。ドキュメント見ながら気合で読むと整数列にインデックスのmod 7を足してずらしていることがわかる。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;lst &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; list(map(int, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;102 109 99 106 127 53 116 95 122 113 120 118 100 55 51 103 57 128&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;split()))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(len(lst)):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      lst[i] &lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt; i &lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;7&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join([chr(n) &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; n &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; lst])) 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;blatant-corruption&#34;&gt;Blatant Corruption&lt;/h2&gt;
+&lt;p&gt;バイナリを見ると0d0a1a0aから始まっており、これはPNGのマジックナンバーの5～8バイト目。1～4バイト目の89504e47を先頭に書き足すとPNGファイルとして読めるようになる。&lt;/p&gt;
+&lt;h2 id=&#34;1-chal-2-categories&#34;&gt;1 chal 2 categories&lt;/h2&gt;
+&lt;p&gt;まずPythonファイルを読み、画像を逆変換すると、右下に重なっていて読めない文字列が見える。ピクセルのインデックスのmod 4で分解するとフラグの先頭1/3と後ろ2/3に分離できた。後半の重なりは意味の通る文になるように気合で分離するとフラグが得られる。&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

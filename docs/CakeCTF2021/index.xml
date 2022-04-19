@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CakeCTF2021s on CTF Writeups</title>
+    <link>/cakectf2021/</link>
+    <description>Recent content in CakeCTF2021s on CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="/cakectf2021/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CakeCTF 2021 Writeup</title>
+      <link>/cakectf2021/cakectf2021/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/cakectf2021/cakectf2021/</guid>
+      <description>CakeCTF 2021 Writeup 注意: 書きかけです
+目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    MofuMofu Diary - 110 問題 Would you like to see some mofu-mofu pictures?
+* The flag is located at /flag.txt
+mofumofu_diary_82c31e779086e3079e0ac62643e14fed.tar.gz(を解凍したもの)
+author: ptr-yudai
+解説 index.phpとutil.phpを読むと、だいたいの動きとしてCookieのcache中にdataとexpiryがあり、dataの中には画像ファイル名であるname、画像の説明であるdescriptionがあり、expiryの日付が一週間以上前の場合は再度Cookie情報からファイルの再読み込みをして表示しています。
+重要な部分はCookie情報からファイルの再読み込みをしていることで、Cookieを編集することで自由なファイルを読み込ませることができる点です。
+再読み込みさせるためにexpiryを適当に1週間以上前の値にし、nameが/flag.txtになるデータを作ります。例えばChromeの開発者モードのApplicationタブで以下のようなものをパーセントエンコーディングしてcacheに入れます。
+{&amp;quot;data&amp;quot;:[{&amp;quot;name&amp;quot;:&amp;quot;\/flag.txt&amp;quot;,&amp;quot;description&amp;quot;:&amp;quot;flag&amp;quot;}],&amp;quot;expiry&amp;quot;:1530722670}
+リロードするとbase64エンコードされたフラグが手に入るのでデコードして終了。
+UAF4b - 113 問題 warmuppwn You don&amp;rsquo;t dare to try learning Use-after-Free?
+nc pwn.cakectf.com 9001
+author: ptr-yudai
+解説 </description>
+      <content>&lt;h1 id=&#34;cakectf-2021-writeup&#34;&gt;CakeCTF 2021 Writeup&lt;/h1&gt;
+&lt;p&gt;注意: 書きかけです&lt;/p&gt;
+&lt;h2 id=&#34;目次&#34;&gt;目次&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Pwn
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#no-step-on-snek&#34;&gt;No Step On Snek&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jellyspotters&#34;&gt;Jellyspotters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#mdl-considered-harmful&#34;&gt;MDL Considered Harmful&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mofumofu-diary---110&#34;&gt;MofuMofu Diary - 110&lt;/h2&gt;
+&lt;h3 id=&#34;問題&#34;&gt;問題&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;http://web.cakectf.com:8003/&#34;&gt;Would you like to see some mofu-mofu pictures?&lt;/a&gt;&lt;br&gt;
+* The flag is located at &lt;code&gt;/flag.txt&lt;/code&gt;&lt;br&gt;
+&lt;a href=&#34;https://github.com/raster0x2a/CTF-writeup/blob/master/CakeCTF2021/mofumofu_diary_82c31e779086e3079e0ac62643e14fed&#34;&gt;mofumofu_diary_82c31e779086e3079e0ac62643e14fed.tar.gz(を解凍したもの)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;author: ptr-yudai&lt;/p&gt;
+&lt;h3 id=&#34;解説&#34;&gt;解説&lt;/h3&gt;
+&lt;p&gt;index.phpとutil.phpを読むと、だいたいの動きとしてCookieの&lt;code&gt;cache&lt;/code&gt;中に&lt;code&gt;data&lt;/code&gt;と&lt;code&gt;expiry&lt;/code&gt;があり、&lt;code&gt;data&lt;/code&gt;の中には画像ファイル名である&lt;code&gt;name&lt;/code&gt;、画像の説明である&lt;code&gt;description&lt;/code&gt;があり、&lt;code&gt;expiry&lt;/code&gt;の日付が一週間以上前の場合は再度Cookie情報からファイルの再読み込みをして表示しています。&lt;br&gt;
+重要な部分はCookie情報からファイルの再読み込みをしていることで、Cookieを編集することで自由なファイルを読み込ませることができる点です。&lt;br&gt;
+再読み込みさせるために&lt;code&gt;expiry&lt;/code&gt;を適当に1週間以上前の値にし、&lt;code&gt;name&lt;/code&gt;が&lt;code&gt;/flag.txt&lt;/code&gt;になるデータを作ります。例えばChromeの開発者モードのApplicationタブで以下のようなものをパーセントエンコーディングして&lt;code&gt;cache&lt;/code&gt;に入れます。&lt;br&gt;
+&lt;code&gt;{&amp;quot;data&amp;quot;:[{&amp;quot;name&amp;quot;:&amp;quot;\/flag.txt&amp;quot;,&amp;quot;description&amp;quot;:&amp;quot;flag&amp;quot;}],&amp;quot;expiry&amp;quot;:1530722670}&lt;/code&gt;&lt;br&gt;
+リロードするとbase64エンコードされたフラグが手に入るのでデコードして終了。&lt;/p&gt;
+&lt;h2 id=&#34;uaf4b---113&#34;&gt;UAF4b - 113&lt;/h2&gt;
+&lt;h3 id=&#34;問題-1&#34;&gt;問題&lt;/h3&gt;
+&lt;p&gt;warmuppwn
+You don&amp;rsquo;t dare to try learning Use-after-Free?&lt;br&gt;
+&lt;code&gt;nc pwn.cakectf.com 9001&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;author: ptr-yudai&lt;/p&gt;
+&lt;h3 id=&#34;解説-1&#34;&gt;解説&lt;/h3&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>picoCTF 2022 :: CTF Writeups</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="picoCTF 2022 目次  Web  Forbidden Paths SQL Direct Power Cookie Roboto Sans Secrets SQLiLite Search source   Binary(Pwn)  flag leek File types RPS buffer overflow 0 buffer overflow 1 buffer overflow 2 x-sixty-what   Rev  Fresh Java Bbbbloat unpackme    Forbidden Paths 相対パスを使う。 ../../../../flag.txt
+SQL Direct DBに接続して\dからのselect * from flags
+Power Cookie CookieのisAdminを1にして読み込む。
+Roboto Sans robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。
+Secrets ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。
+SQLiLite シンプルなSQLインジェクション。
+Search source CSSファイル内のコメントにフラグがある。" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/picoctf2022/picoctf2022/" />
+
+
+
+
+<link rel="stylesheet" href="assets/style.css">
+
+  <link rel="stylesheet" href="assets/%25!s%28%3cnil%3e%29.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="img/favicon/orange.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="picoCTF 2022">
+<meta property="og:description" content="picoCTF 2022 目次  Web  Forbidden Paths SQL Direct Power Cookie Roboto Sans Secrets SQLiLite Search source   Binary(Pwn)  flag leek File types RPS buffer overflow 0 buffer overflow 1 buffer overflow 2 x-sixty-what   Rev  Fresh Java Bbbbloat unpackme    Forbidden Paths 相対パスを使う。 ../../../../flag.txt
+SQL Direct DBに接続して\dからのselect * from flags
+Power Cookie CookieのisAdminを1にして読み込む。
+Roboto Sans robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。
+Secrets ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。
+SQLiLite シンプルなSQLインジェクション。
+Search source CSSファイル内のコメントにフラグがある。" />
+<meta property="og:url" content="/picoctf2022/picoctf2022/" />
+<meta property="og:site_name" content="CTF Writeups" />
+
+  
+    <meta property="og:image" content="img/favicon/%!s().png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+  <meta property="article:published_time" content="2022-04-18 21:12:08 &#43;0900 JST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
+    
+  </div>
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/picoctf2022/picoctf2022/">picoCTF 2022</a></h1>
+  <div class="post-meta">
+    
+      <span class="post-date">
+        2022-04-18
+        
+      </span>
+    
+    
+    
+  </div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="picoctf-2022">picoCTF 2022<a href="#picoctf-2022" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="目次">目次<a href="#目次" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<ul>
+<li>Web
+<ul>
+<li><a href="#forbidden-paths">Forbidden Paths</a></li>
+<li><a href="#sql-direct">SQL Direct</a></li>
+<li><a href="#power-cookie">Power Cookie</a></li>
+<li><a href="#roboto-sans">Roboto Sans</a></li>
+<li><a href="#secrets">Secrets</a></li>
+<li><a href="#sqlilite">SQLiLite</a></li>
+<li><a href="#search-source">Search source</a></li>
+</ul>
+</li>
+<li>Binary(Pwn)
+<ul>
+<li><a href="#flag-leek">flag leek</a></li>
+<li><a href="#file-types">File types</a></li>
+<li><a href="#rps">RPS</a></li>
+<li><a href="#buffer-overflow-0">buffer overflow 0</a></li>
+<li><a href="#buffer-overflow-1">buffer overflow 1</a></li>
+<li><a href="#buffer-overflow-2">buffer overflow 2</a></li>
+<li><a href="#x-sixty-what">x-sixty-what</a></li>
+</ul>
+</li>
+<li>Rev
+<ul>
+<li><a href="#fresh-java">Fresh Java</a></li>
+<li><a href="#bbbbloat">Bbbbloat</a></li>
+<li><a href="#unpackme">unpackme</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="forbidden-paths">Forbidden Paths<a href="#forbidden-paths" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>相対パスを使う。
+<code>../../../../flag.txt</code></p>
+<h2 id="sql-direct">SQL Direct<a href="#sql-direct" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>DBに接続して<code>\d</code>からの<code>select * from flags</code></p>
+<h2 id="power-cookie">Power Cookie<a href="#power-cookie" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>CookieのisAdminを1にして読み込む。</p>
+<h2 id="roboto-sans">Roboto Sans<a href="#roboto-sans" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。</p>
+<h2 id="secrets">Secrets<a href="#secrets" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。</p>
+<h2 id="sqlilite">SQLiLite<a href="#sqlilite" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>シンプルなSQLインジェクション。</p>
+<h2 id="search-source">Search source<a href="#search-source" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>CSSファイル内のコメントにフラグがある。</p>
+<h2 id="flag-leek">flag leek<a href="#flag-leek" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>フォーマットストリング攻撃ができるので読み出す。<br>
+<code>echo 'AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTTUUVVWWXXYYZZ:%36$p' | ./vuln</code></p>
+<h2 id="file-types">File types<a href="#file-types" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>ファイルの中身を見るとshell archive(shar)というものらしい。shで解凍するとarという圧縮形式のファイルが出てくる。アーカイバをインストールして解凍すると次はcpioという形式のファイルが出てくる。bzip2、gzip、lgipと続いてそろそろ終わりかと思うがまだ終わらない。<code>ASCII text</code>と出てくることを願いながらfileコマンドを叩いて、アーカイバをインストールし解凍して、を繰り返すとLZ4、LZMA、lzop、lzip、XZで終わる。途中でやめようか迷った。</p>
+<h2 id="rps">RPS<a href="#rps" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>ソースコードを読むと<code>srand(time(0))</code>があり、これはタイミング攻撃が可能。手元でも同じように<code>srand(time(0))</code>の<code>rand() % 3</code>を出力するCのコードを書いてコンパイルする。Pythonからその実行ファイルを呼び出して勝つ手を出すスクリプトを書いて実行してみるが絶妙にサーバー側と時間がズレていて何度も調整するがなかなか綺麗に合わせられない。ズレがあるとは言え1秒間の間では同じ手が出されるため連勝はしやすい。最終的に完璧な調整は諦めて運よく5連勝できることを待つという方法でフラグをゲット。</p>
+<h2 id="buffer-overflow-0">buffer overflow 0<a href="#buffer-overflow-0" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>適当に長い文字列を入力に渡すとフラグが貰える。</p>
+<h2 id="buffer-overflow-1">buffer overflow 1<a href="#buffer-overflow-1" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>win関数に飛ばせばフラグが貰える。<code>objdump -d vuln</code>などでwinのアドレスを確認し、バッファオーバーフローでvulnのリターンアドレスをwinのアドレスに書き換える。</p>
+<h2 id="buffer-overflow-2">buffer overflow 2<a href="#buffer-overflow-2" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>これもwin関数に飛ばせばフラグが貰える。しかしwin関数に2つの引数(arg1とarg2)に正しい値を渡さないとフラグが貰えない。vulnのリターンアドレスをwinのアドレスに書き換えるとして、winのアドレスの次にarg1とarg2を置けばフラグが出力される。ここでリモートで試してみるがフラグが貰えない。GDBで試すとどうやらwinのあとにリターンアドレスでarg1を参照してセグフォで落ちている模様。0x804945あたりにpopを4回してretしているありがたいgadgetがあるので、popで引数2個分スタックポインタをずらして、mainのアドレスにリターンさせる。<br>
+ペイロードはこんな感じになる。<code>b&quot;A&quot; * (buf_size + 8) + base_addr + win_addr + pop_addr + arg1 + arg2 + main_addr</code></p>
+<h2 id="x-sixty-what">x-sixty-what<a href="#x-sixty-what" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>64bitでのBoF。Pwn初心者なのであまり正しく理解できている自信はないが、Intel CETという機能があり、jmp/callでendbr32/64以外の場所に飛べなくする機構があるらしい(参考リンク: <a href="https://smallkirby.hatenablog.com/entry/2020/09/10/230629">【pwn 36.0】Intel CETが、みんなの恋人ROPを殺す</a>)。flag関数でフラグが貰えるのでBoFでflag関数に飛ばしたあとにmainに飛ばせばフラグゲット。</p>
+<h2 id="fresh-java">Fresh Java<a href="#fresh-java" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>classファイルをデコンパイルするとフラグを1文字ずつ検証するコードが出てくる。ハードコードされているのでフラグゲット。</p>
+<h2 id="bbbbloat">Bbbbloat<a href="#bbbbloat" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>特定の数値を渡すとフラグが貰える実行ファイルらしい。Ghidraでデコンパイルすると数値がわかる。</p>
+<h2 id="unpackme">unpackme<a href="#unpackme" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<p>UPXでパックされているのでまずアンパックする。若干難読化されているがBbbbloatとほとんど変わらない動作をする実行ファイルが出てくる。Ghidraでデコンパイルしても見づらかったのでIDA Freeを使うと綺麗にデコンパイルされて数値がわかる。GhidraとIDA Freeを適材適所で使い分けられると便利かもしれない。</p>
+
+      </div></div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2022 Powered by <a href="http://gohugo.io">Hugo</a></span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

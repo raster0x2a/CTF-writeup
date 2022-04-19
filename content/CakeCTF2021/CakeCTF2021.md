@@ -1,3 +1,8 @@
+---
+title: "CakeCTF 2021 Writeup"
+draft: false
+---
+
 # CakeCTF 2021 Writeup
 
 注意: 書きかけです

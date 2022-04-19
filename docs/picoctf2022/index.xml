@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CTF Writeups</title>
+    <link>/picoctf2022/</link>
+    <description>Recent content on CTF Writeups</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 18 Apr 2022 21:12:08 +0900</lastBuildDate><atom:link href="/picoctf2022/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>picoCTF 2022</title>
+      <link>/picoctf2022/picoctf2022/</link>
+      <pubDate>Mon, 18 Apr 2022 21:12:08 +0900</pubDate>
+      
+      <guid>/picoctf2022/picoctf2022/</guid>
+      <description>picoCTF 2022 目次  Web  Forbidden Paths SQL Direct Power Cookie Roboto Sans Secrets SQLiLite Search source   Binary(Pwn)  flag leek File types RPS buffer overflow 0 buffer overflow 1 buffer overflow 2 x-sixty-what   Rev  Fresh Java Bbbbloat unpackme    Forbidden Paths 相対パスを使う。 ../../../../flag.txt
+SQL Direct DBに接続して\dからのselect * from flags
+Power Cookie CookieのisAdminを1にして読み込む。
+Roboto Sans robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。
+Secrets ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。
+SQLiLite シンプルなSQLインジェクション。
+Search source CSSファイル内のコメントにフラグがある。</description>
+      <content>&lt;h1 id=&#34;picoctf-2022&#34;&gt;picoCTF 2022&lt;/h1&gt;
+&lt;h2 id=&#34;目次&#34;&gt;目次&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Web
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#forbidden-paths&#34;&gt;Forbidden Paths&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sql-direct&#34;&gt;SQL Direct&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#power-cookie&#34;&gt;Power Cookie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#roboto-sans&#34;&gt;Roboto Sans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#secrets&#34;&gt;Secrets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sqlilite&#34;&gt;SQLiLite&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#search-source&#34;&gt;Search source&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Binary(Pwn)
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#flag-leek&#34;&gt;flag leek&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#file-types&#34;&gt;File types&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rps&#34;&gt;RPS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#buffer-overflow-0&#34;&gt;buffer overflow 0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#buffer-overflow-1&#34;&gt;buffer overflow 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#buffer-overflow-2&#34;&gt;buffer overflow 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#x-sixty-what&#34;&gt;x-sixty-what&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Rev
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#fresh-java&#34;&gt;Fresh Java&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bbbbloat&#34;&gt;Bbbbloat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#unpackme&#34;&gt;unpackme&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;forbidden-paths&#34;&gt;Forbidden Paths&lt;/h2&gt;
+&lt;p&gt;相対パスを使う。
+&lt;code&gt;../../../../flag.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sql-direct&#34;&gt;SQL Direct&lt;/h2&gt;
+&lt;p&gt;DBに接続して&lt;code&gt;\d&lt;/code&gt;からの&lt;code&gt;select * from flags&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;power-cookie&#34;&gt;Power Cookie&lt;/h2&gt;
+&lt;p&gt;CookieのisAdminを1にして読み込む。&lt;/p&gt;
+&lt;h2 id=&#34;roboto-sans&#34;&gt;Roboto Sans&lt;/h2&gt;
+&lt;p&gt;robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。&lt;/p&gt;
+&lt;h2 id=&#34;secrets&#34;&gt;Secrets&lt;/h2&gt;
+&lt;p&gt;ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。&lt;/p&gt;
+&lt;h2 id=&#34;sqlilite&#34;&gt;SQLiLite&lt;/h2&gt;
+&lt;p&gt;シンプルなSQLインジェクション。&lt;/p&gt;
+&lt;h2 id=&#34;search-source&#34;&gt;Search source&lt;/h2&gt;
+&lt;p&gt;CSSファイル内のコメントにフラグがある。&lt;/p&gt;
+&lt;h2 id=&#34;flag-leek&#34;&gt;flag leek&lt;/h2&gt;
+&lt;p&gt;フォーマットストリング攻撃ができるので読み出す。&lt;br&gt;
+&lt;code&gt;echo &#39;AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTTUUVVWWXXYYZZ:%36$p&#39; | ./vuln&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;file-types&#34;&gt;File types&lt;/h2&gt;
+&lt;p&gt;ファイルの中身を見るとshell archive(shar)というものらしい。shで解凍するとarという圧縮形式のファイルが出てくる。アーカイバをインストールして解凍すると次はcpioという形式のファイルが出てくる。bzip2、gzip、lgipと続いてそろそろ終わりかと思うがまだ終わらない。&lt;code&gt;ASCII text&lt;/code&gt;と出てくることを願いながらfileコマンドを叩いて、アーカイバをインストールし解凍して、を繰り返すとLZ4、LZMA、lzop、lzip、XZで終わる。途中でやめようか迷った。&lt;/p&gt;
+&lt;h2 id=&#34;rps&#34;&gt;RPS&lt;/h2&gt;
+&lt;p&gt;ソースコードを読むと&lt;code&gt;srand(time(0))&lt;/code&gt;があり、これはタイミング攻撃が可能。手元でも同じように&lt;code&gt;srand(time(0))&lt;/code&gt;の&lt;code&gt;rand() % 3&lt;/code&gt;を出力するCのコードを書いてコンパイルする。Pythonからその実行ファイルを呼び出して勝つ手を出すスクリプトを書いて実行してみるが絶妙にサーバー側と時間がズレていて何度も調整するがなかなか綺麗に合わせられない。ズレがあるとは言え1秒間の間では同じ手が出されるため連勝はしやすい。最終的に完璧な調整は諦めて運よく5連勝できることを待つという方法でフラグをゲット。&lt;/p&gt;
+&lt;h2 id=&#34;buffer-overflow-0&#34;&gt;buffer overflow 0&lt;/h2&gt;
+&lt;p&gt;適当に長い文字列を入力に渡すとフラグが貰える。&lt;/p&gt;
+&lt;h2 id=&#34;buffer-overflow-1&#34;&gt;buffer overflow 1&lt;/h2&gt;
+&lt;p&gt;win関数に飛ばせばフラグが貰える。&lt;code&gt;objdump -d vuln&lt;/code&gt;などでwinのアドレスを確認し、バッファオーバーフローでvulnのリターンアドレスをwinのアドレスに書き換える。&lt;/p&gt;
+&lt;h2 id=&#34;buffer-overflow-2&#34;&gt;buffer overflow 2&lt;/h2&gt;
+&lt;p&gt;これもwin関数に飛ばせばフラグが貰える。しかしwin関数に2つの引数(arg1とarg2)に正しい値を渡さないとフラグが貰えない。vulnのリターンアドレスをwinのアドレスに書き換えるとして、winのアドレスの次にarg1とarg2を置けばフラグが出力される。ここでリモートで試してみるがフラグが貰えない。GDBで試すとどうやらwinのあとにリターンアドレスでarg1を参照してセグフォで落ちている模様。0x804945あたりにpopを4回してretしているありがたいgadgetがあるので、popで引数2個分スタックポインタをずらして、mainのアドレスにリターンさせる。&lt;br&gt;
+ペイロードはこんな感じになる。&lt;code&gt;b&amp;quot;A&amp;quot; * (buf_size + 8) + base_addr + win_addr + pop_addr + arg1 + arg2 + main_addr&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;x-sixty-what&#34;&gt;x-sixty-what&lt;/h2&gt;
+&lt;p&gt;64bitでのBoF。Pwn初心者なのであまり正しく理解できている自信はないが、Intel CETという機能があり、jmp/callでendbr32/64以外の場所に飛べなくする機構があるらしい(参考リンク: &lt;a href=&#34;https://smallkirby.hatenablog.com/entry/2020/09/10/230629&#34;&gt;【pwn 36.0】Intel CETが、みんなの恋人ROPを殺す&lt;/a&gt;)。flag関数でフラグが貰えるのでBoFでflag関数に飛ばしたあとにmainに飛ばせばフラグゲット。&lt;/p&gt;
+&lt;h2 id=&#34;fresh-java&#34;&gt;Fresh Java&lt;/h2&gt;
+&lt;p&gt;classファイルをデコンパイルするとフラグを1文字ずつ検証するコードが出てくる。ハードコードされているのでフラグゲット。&lt;/p&gt;
+&lt;h2 id=&#34;bbbbloat&#34;&gt;Bbbbloat&lt;/h2&gt;
+&lt;p&gt;特定の数値を渡すとフラグが貰える実行ファイルらしい。Ghidraでデコンパイルすると数値がわかる。&lt;/p&gt;
+&lt;h2 id=&#34;unpackme&#34;&gt;unpackme&lt;/h2&gt;
+&lt;p&gt;UPXでパックされているのでまずアンパックする。若干難読化されているがBbbbloatとほとんど変わらない動作をする実行ファイルが出てくる。Ghidraでデコンパイルしても見づらかったのでIDA Freeを使うと綺麗にデコンパイルされて数値がわかる。GhidraとIDA Freeを適材適所で使い分けられると便利かもしれない。&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

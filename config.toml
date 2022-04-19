@@ -1,6 +1,9 @@
 base_url = "https://raster0x2a.github.io/CTF-writeup/"
 title = "CTF Writeups"
-theme = "terminimal"
+theme = "terminal"
+canonifyurls = false
+#true
+publishDir = "docs"
 
 # Sass compilation is required
 compile_sass = true
