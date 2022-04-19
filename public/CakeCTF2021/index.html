@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>CakeCTF2021s :: CTF Writeup</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/cakectf2021/" />
+
+
+
+
+<link rel="stylesheet" href="assets/style.css">
+
+  <link rel="stylesheet" href="assets/blue.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="img/favicon/blue.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="CakeCTF2021s">
+<meta property="og:description" content="" />
+<meta property="og:url" content="/cakectf2021/" />
+<meta property="og:site_name" content="CTF Writeup" />
+
+  
+    <meta property="og:image" content="img/favicon/blue.png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+  <link href="/cakectf2021/index.xml" rel="alternate" type="application/rss+xml" title="CTF Writeup" />
+
+
+
+
+
+
+
+
+
+</head>
+<body class="blue">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    CTF Writeup
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/showcase">Showcase</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+  
+  <div class="posts">
+    
+      <div class="post on-list">
+        <h1 class="post-title">
+          <a href="/cakectf2021/cakectf2021/">CakeCTF 2021 Writeup</a>
+        </h1>
+        <div class="post-meta">
+          <span class="post-date">
+            0001-01-01
+          </span>
+          
+        </div>
+
+        
+
+        
+
+
+      
+        <div class="post-content">
+          
+            <p>CakeCTF 2021 Writeup 注意: 書きかけです
+目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    MofuMofu Diary - 110 問題 Would you like to see some mofu-mofu pictures?</p>
+<ul>
+<li>The flag is located at /flag.txt
+mofumofu_diary_82c31e779086e3079e0ac62643e14fed.tar.gz(を解凍したもの)
+author: ptr-yudai
+解説 index.phpとutil.phpを読むと、だいたいの動きとしてCookieのcache中にdataとexpiryがあり、dataの中には画像ファイル名であるname、画像の説明であるdescriptionがあり、expiryの日付が一週間以上前の場合は再度Cookie情報からファイルの再読み込みをして表示しています。
+重要な部分はCookie情報からファイルの再読み込みをしていることで、Cookieを編集することで自由なファイルを読み込ませることができる点です。
+再読み込みさせるためにexpiryを適当に1週間以上前の値にし、nameが/flag.txtになるデータを作ります。例えばChromeの開発者モードのApplicationタブで以下のようなものをパーセントエンコーディングしてcacheに入れます。
+{&quot;data&quot;:[{&quot;name&quot;:&quot;/flag.txt&quot;,&quot;description&quot;:&quot;flag&quot;}],&quot;expiry&quot;:1530722670}
+リロードするとbase64エンコードされたフラグが手に入るのでデコードして終了。
+UAF4b - 113 問題 warmuppwn You don’t dare to try learning Use-after-Free?
+nc pwn.cakectf.com 9001
+author: ptr-yudai
+解説</li>
+</ul>
+
+          
+        </div>
+
+        
+        <div>
+          <a class="read-more button"
+            href="/cakectf2021/cakectf2021/">Read more →</a>
+        </div>
+        
+      </div>
+    
+    <div class="pagination">
+  <div class="pagination__buttons">
+    
+    
+  </div>
+</div>
+
+  </div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>© R* 2022</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

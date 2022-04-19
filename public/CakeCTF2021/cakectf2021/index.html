@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>CakeCTF 2021 Writeup :: CTF Writeup</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CakeCTF 2021 Writeup 注意: 書きかけです
+目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    MofuMofu Diary - 110 問題 Would you like to see some mofu-mofu pictures?
+* The flag is located at /flag.txt
+mofumofu_diary_82c31e779086e3079e0ac62643e14fed.tar.gz(を解凍したもの)
+author: ptr-yudai
+解説 index.phpとutil.phpを読むと、だいたいの動きとしてCookieのcache中にdataとexpiryがあり、dataの中には画像ファイル名であるname、画像の説明であるdescriptionがあり、expiryの日付が一週間以上前の場合は再度Cookie情報からファイルの再読み込みをして表示しています。
+重要な部分はCookie情報からファイルの再読み込みをしていることで、Cookieを編集することで自由なファイルを読み込ませることができる点です。
+再読み込みさせるためにexpiryを適当に1週間以上前の値にし、nameが/flag.txtになるデータを作ります。例えばChromeの開発者モードのApplicationタブで以下のようなものをパーセントエンコーディングしてcacheに入れます。
+{&amp;quot;data&amp;quot;:[{&amp;quot;name&amp;quot;:&amp;quot;\/flag.txt&amp;quot;,&amp;quot;description&amp;quot;:&amp;quot;flag&amp;quot;}],&amp;quot;expiry&amp;quot;:1530722670}
+リロードするとbase64エンコードされたフラグが手に入るのでデコードして終了。
+UAF4b - 113 問題 warmuppwn You don&amp;rsquo;t dare to try learning Use-after-Free?
+nc pwn.cakectf.com 9001
+author: ptr-yudai
+解説 " />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/cakectf2021/cakectf2021/" />
+
+
+
+
+<link rel="stylesheet" href="assets/style.css">
+
+  <link rel="stylesheet" href="assets/blue.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="img/favicon/blue.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="CakeCTF 2021 Writeup">
+<meta property="og:description" content="CakeCTF 2021 Writeup 注意: 書きかけです
+目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    MofuMofu Diary - 110 問題 Would you like to see some mofu-mofu pictures?
+* The flag is located at /flag.txt
+mofumofu_diary_82c31e779086e3079e0ac62643e14fed.tar.gz(を解凍したもの)
+author: ptr-yudai
+解説 index.phpとutil.phpを読むと、だいたいの動きとしてCookieのcache中にdataとexpiryがあり、dataの中には画像ファイル名であるname、画像の説明であるdescriptionがあり、expiryの日付が一週間以上前の場合は再度Cookie情報からファイルの再読み込みをして表示しています。
+重要な部分はCookie情報からファイルの再読み込みをしていることで、Cookieを編集することで自由なファイルを読み込ませることができる点です。
+再読み込みさせるためにexpiryを適当に1週間以上前の値にし、nameが/flag.txtになるデータを作ります。例えばChromeの開発者モードのApplicationタブで以下のようなものをパーセントエンコーディングしてcacheに入れます。
+{&amp;quot;data&amp;quot;:[{&amp;quot;name&amp;quot;:&amp;quot;\/flag.txt&amp;quot;,&amp;quot;description&amp;quot;:&amp;quot;flag&amp;quot;}],&amp;quot;expiry&amp;quot;:1530722670}
+リロードするとbase64エンコードされたフラグが手に入るのでデコードして終了。
+UAF4b - 113 問題 warmuppwn You don&amp;rsquo;t dare to try learning Use-after-Free?
+nc pwn.cakectf.com 9001
+author: ptr-yudai
+解説 " />
+<meta property="og:url" content="/cakectf2021/cakectf2021/" />
+<meta property="og:site_name" content="CTF Writeup" />
+
+  
+    <meta property="og:image" content="img/favicon/blue.png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="blue">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    CTF Writeup
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/showcase">Showcase</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/cakectf2021/cakectf2021/">CakeCTF 2021 Writeup</a></h1>
+  <div class="post-meta">
+    
+    
+    
+  </div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="cakectf-2021-writeup">CakeCTF 2021 Writeup<a href="#cakectf-2021-writeup" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<p>注意: 書きかけです</p>
+<h2 id="目次">目次<a href="#目次" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<ul>
+<li>Pwn
+<ul>
+<li><a href="#no-step-on-snek">No Step On Snek</a></li>
+<li><a href="#jellyspotters">Jellyspotters</a></li>
+<li><a href="#mdl-considered-harmful">MDL Considered Harmful</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="mofumofu-diary---110">MofuMofu Diary - 110<a href="#mofumofu-diary---110" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="問題">問題<a href="#問題" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p><a href="http://web.cakectf.com:8003/">Would you like to see some mofu-mofu pictures?</a><br>
+* The flag is located at <code>/flag.txt</code><br>
+<a href="https://github.com/raster0x2a/CTF-writeup/blob/master/CakeCTF2021/mofumofu_diary_82c31e779086e3079e0ac62643e14fed">mofumofu_diary_82c31e779086e3079e0ac62643e14fed.tar.gz(を解凍したもの)</a></p>
+<p>author: ptr-yudai</p>
+<h3 id="解説">解説<a href="#解説" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>index.phpとutil.phpを読むと、だいたいの動きとしてCookieの<code>cache</code>中に<code>data</code>と<code>expiry</code>があり、<code>data</code>の中には画像ファイル名である<code>name</code>、画像の説明である<code>description</code>があり、<code>expiry</code>の日付が一週間以上前の場合は再度Cookie情報からファイルの再読み込みをして表示しています。<br>
+重要な部分はCookie情報からファイルの再読み込みをしていることで、Cookieを編集することで自由なファイルを読み込ませることができる点です。<br>
+再読み込みさせるために<code>expiry</code>を適当に1週間以上前の値にし、<code>name</code>が<code>/flag.txt</code>になるデータを作ります。例えばChromeの開発者モードのApplicationタブで以下のようなものをパーセントエンコーディングして<code>cache</code>に入れます。<br>
+<code>{&quot;data&quot;:[{&quot;name&quot;:&quot;\/flag.txt&quot;,&quot;description&quot;:&quot;flag&quot;}],&quot;expiry&quot;:1530722670}</code><br>
+リロードするとbase64エンコードされたフラグが手に入るのでデコードして終了。</p>
+<h2 id="uaf4b---113">UAF4b - 113<a href="#uaf4b---113" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="問題-1">問題<a href="#問題-1" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>warmuppwn
+You don&rsquo;t dare to try learning Use-after-Free?<br>
+<code>nc pwn.cakectf.com 9001</code></p>
+<p>author: ptr-yudai</p>
+<h3 id="解説-1">解説<a href="#解説-1" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+
+      </div></div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>© R* 2022</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

