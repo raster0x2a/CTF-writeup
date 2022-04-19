@@ -1,5 +1,5 @@
 ---
-title: "picoCTF 2022"
+title: "picoCTF 2022 Writeup"
 date: 2022-04-18T21:12:08+09:00
 draft: false
 ---

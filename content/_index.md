@@ -1,10 +1,9 @@
 ---
-
 ---
 
-[Writeups](/)
+[Writeups](/CTF-Writeup)
 
-- [DiceCTF 2021](/DiceCTF2021/BabierCSP)
-- [DawgCTF 2021](/DawgCTF2021/DawgCTF2021)
-- [MHSCTF 2022](/MHSCTF2022/MHSCTF2022)
-- [picoCTF 2022](/picoCTF2022/picoCTF2022)
+- [DiceCTF 2021](./dicectf2021/babiercsp)
+- [DawgCTF 2021](./dawgctf2021/dawgctf2021)
+- [MHSCTF 2022](./mhsctf2022/mhsctf2022)
+- [picoCTF 2022](./picoctf2022/picoctf2022)
