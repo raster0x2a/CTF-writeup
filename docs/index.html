@@ -3,11 +3,11 @@
 <head>
 	<meta name="generator" content="Hugo 0.97.2" />
   
-    <title>CTF Writeups</title>
+    <title>CTF Writeup</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
+<meta name="description" content="My CTF Writeups" />
 <meta name="keywords" content="" />
 <meta name="robots" content="noodp" />
 <link rel="canonical" href="/" />
@@ -17,7 +17,7 @@
 
 <link rel="stylesheet" href="assets/style.css">
 
-  <link rel="stylesheet" href="assets/%25!s%28%3cnil%3e%29.css">
+  <link rel="stylesheet" href="assets/blue.css">
 
 
 
@@ -26,23 +26,28 @@
 
 <link rel="apple-touch-icon" href="img/apple-touch-icon-192x192.png">
 
-  <link rel="shortcut icon" href="img/favicon/orange.png">
+  <link rel="shortcut icon" href="img/favicon/blue.png">
 
 
 
 <meta name="twitter:card" content="summary" />
 
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
 
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="CTF Writeups">
-<meta property="og:description" content="" />
+<meta property="og:title" content="CTF Writeup">
+<meta property="og:description" content="My CTF Writeups" />
 <meta property="og:url" content="/" />
-<meta property="og:site_name" content="CTF Writeups" />
+<meta property="og:site_name" content="CTF Writeup" />
 
   
-    <meta property="og:image" content="img/favicon/%!s().png">
+    <meta property="og:image" content="img/favicon/blue.png">
   
 
 <meta property="og:image:width" content="2048">
@@ -52,7 +57,7 @@
 
 
 
-  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="CTF Writeups" />
+  <link href="/index.xml" rel="alternate" type="application/rss+xml" title="CTF Writeup" />
 
 
 
@@ -63,23 +68,58 @@
 
 
 </head>
-<body class="">
+<body class="blue">
 
 
-<div class="container headings--one-size">
+<div class="container center headings--one-size">
 
   <header class="header">
   <div class="header__inner">
     <div class="header__logo">
-      <a href="">
+      <a href="/">
   <div class="logo">
-    Terminal
+    CTF Writeup
   </div>
 </a>
 
     </div>
     
+      <div class="menu-trigger">menu</div>
+    
   </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/showcase">Showcase</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
   
 </header>
 
@@ -109,6 +149,81 @@
     
 
     
+      <div class="post on-list">
+        <h1 class="post-title">
+          <a href="/posts/picoctf2022/">picoCTF 2022 Writeup</a>
+        </h1>
+        <div class="post-meta">
+          <span class="post-date">
+            2022-04-18
+          </span>
+          
+        </div>
+
+        
+
+
+        
+
+
+
+        <div class="post-content">
+          
+            picoCTF 2022 目次  Web  Forbidden Paths SQL Direct Power Cookie Roboto Sans Secrets SQLiLite Search source   Binary(Pwn)  flag leek File types RPS buffer overflow 0 buffer overflow 1 buffer overflow 2 x-sixty-what   Rev  Fresh Java Bbbbloat unpackme    Forbidden Paths 相対パスを使う。 ../../../../flag.txt
+SQL Direct DBに接続して\dからのselect * from flags
+Power Cookie CookieのisAdminを1にして読み込む。
+Roboto Sans robots.txtを見るとBase64エンコードされたパスがあるのでデコードしてそこにアクセス。
+Secrets ソースコードを眺めるとsecretという謎のパスが一段入ってるものが見つかる。アクセスして順に同じことをやるとたどり着く。
+SQLiLite シンプルなSQLインジェクション。
+Search source CSSファイル内のコメントにフラグがある。
+          
+        </div>
+
+        
+        <div>
+          <a class="read-more button"
+            href="/posts/picoctf2022/">Read more →</a>
+        </div>
+        
+      </div>
+    
+      <div class="post on-list">
+        <h1 class="post-title">
+          <a href="/posts/dawgctf2021/"></a>
+        </h1>
+        <div class="post-meta">
+          <span class="post-date">
+            0001-01-01
+          </span>
+          
+        </div>
+
+        
+
+
+        
+
+
+
+        <div class="post-content">
+          
+            DawgCTF 2021 Writeup 目次  Pwn  No Step On Snek Jellyspotters MDL Considered Harmful    No Step On Snek 問題 75 points
+I heard you guys like python pwnables
+nc umbccd.io 4000
+Author: trashcanna
+解説 ncコマンドで接続すると以下のように表示されます。
+Welcome to the aMAZEing Maze Your goal is to get from one side of the board to the other. Your character is represented by &quot;OO&quot; and the finish will be &quot;FF&quot; W/w - Move up!
+          
+        </div>
+
+        
+        <div>
+          <a class="read-more button"
+            href="/posts/dawgctf2021/">Read more →</a>
+        </div>
+        
+      </div>
+    
     <div class="pagination">
   <div class="pagination__buttons">
     
@@ -124,8 +239,8 @@
     <footer class="footer">
   <div class="footer__inner">
     
-      <div class="copyright">
-        <span>© 2022 Powered by <a href="http://gohugo.io">Hugo</a></span>
+      <div class="copyright copyright--user">
+        <span>© R* 2022</span>
     
         <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
       </div>

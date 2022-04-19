@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   
-    <title> :: CTF Writeups</title>
+    <title> :: CTF Writeup</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@ Refused to execute inline script because it violates the following Content Secur
 
 <link rel="stylesheet" href="assets/style.css">
 
-  <link rel="stylesheet" href="assets/%25!s%28%3cnil%3e%29.css">
+  <link rel="stylesheet" href="assets/blue.css">
 
 
 
@@ -29,11 +29,16 @@ Refused to execute inline script because it violates the following Content Secur
 
 <link rel="apple-touch-icon" href="img/apple-touch-icon-192x192.png">
 
-  <link rel="shortcut icon" href="img/favicon/orange.png">
+  <link rel="shortcut icon" href="img/favicon/blue.png">
 
 
 
 <meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
 
 
 
@@ -46,10 +51,10 @@ The admin will set a cookie secret equal to config.secret in index.js.
 解説 まず babier-csp.dicec.tf は name に渡された文字列をそのまま表示させています。そのため XSS が期待できますが、 &amp;lt;script&amp;gt;alert(&#39;ok&#39;)&amp;lt;/script&amp;gt; などを直接入れても以下のように怒られます。
 Refused to execute inline script because it violates the following Content Security Policy directive: &amp;#34;script-src &amp;#39;nonce-LRGWAXOY98Es0zz0QOVmag==&amp;#39;&amp;#34;. Either the &amp;#39;unsafe-inline&amp;#39; keyword, a hash (&amp;#39;sha256-GhSELej6D4No8Cu4c6BlA7SQooAXc4iM9HQ5s9uW7Gw=&amp;#39;), or a nonce (&amp;#39;nonce-...&amp;#39;) is required to enable inline execution. script タグの nonce 属性には、CSP(Content Security Policy) によって JavaScript の実行を制限し、XSS などを防ぐ機能があります。しかし nonce の値が予測できてしまえば意味をなさないため、本来はリクエストごとにランダムな文字列を生成しなければならないのですが、このページでは LRGWAXOY98Es0zz0QOVmag== で固定されています。そのため &amp;lt;script nonce=LRGWAXOY98Es0zz0QOVmag==&amp;gt;hoge&amp;lt;/script&amp;gt; という形式で怒られずに任意のスクリプトをインジェクションできます。" />
 <meta property="og:url" content="/dicectf2021/babiercsp/" />
-<meta property="og:site_name" content="CTF Writeups" />
+<meta property="og:site_name" content="CTF Writeup" />
 
   
-    <meta property="og:image" content="img/favicon/%!s().png">
+    <meta property="og:image" content="img/favicon/blue.png">
   
 
 <meta property="og:image:width" content="2048">
@@ -68,23 +73,58 @@ Refused to execute inline script because it violates the following Content Secur
 
 
 </head>
-<body class="">
+<body class="blue">
 
 
-<div class="container headings--one-size">
+<div class="container center headings--one-size">
 
   <header class="header">
   <div class="header__inner">
     <div class="header__logo">
-      <a href="">
+      <a href="/">
   <div class="logo">
-    Terminal
+    CTF Writeup
   </div>
 </a>
 
     </div>
     
+      <div class="menu-trigger">menu</div>
+    
   </div>
+  
+    <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    
+
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+      
+        <li><a href="/showcase">Showcase</a></li>
+      
+    
+    
+  </ul>
+</nav>
+
   
 </header>
 
@@ -140,8 +180,8 @@ Refused to execute inline script because it violates the following Content Secur
     <footer class="footer">
   <div class="footer__inner">
     
-      <div class="copyright">
-        <span>© 2022 Powered by <a href="http://gohugo.io">Hugo</a></span>
+      <div class="copyright copyright--user">
+        <span>© R* 2022</span>
     
         <span>:: Theme made by <a href="https://twitter.com/panr">panr</a></span>
       </div>
