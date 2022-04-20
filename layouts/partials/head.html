@@ -8,12 +8,12 @@
 {{ template "_internal/google_analytics.html" . }}
 
 <!-- Theme CSS -->
-<!-- <link rel="stylesheet" href="{{ "assets/style.css" | absURL }}"> -->
-<link rel="stylesheet" href="{{ (printf "%s/assets/style.css" .Site.BaseURL) | absURL }}">
+<link rel="stylesheet" href="{{ "assets/style.css" | absURL }}">
+<!-- <link rel="stylesheet" href="{{ (printf "%s/assets/style.css" .Site.BaseURL) | absURL }}"> -->
 
 {{ if (isset .Params "color") }}
-  <!-- <link rel="stylesheet" href="{{ (printf "assets/%s.css" .Params.color) | absURL }}"> -->
-  <link rel="stylesheet" href="{{ .Site.BaseURL }}{{ (printf "/assets/%s.css" .Params.color) | absURL }}">  
+  <link rel="stylesheet" href="{{ (printf "assets/%s.css" .Params.color) | absURL }}"> -->
+  <!-- <link rel="stylesheet" href="{{ .Site.BaseURL }}{{ (printf "/assets/%s.css" .Params.color) | absURL }}"> -->  
 {{ else if and (ne $.Site.Params.ThemeColor "orange") (ne $.Site.Params.ThemeColor "color" "") }}
   <link rel="stylesheet" href="{{ (printf "assets/%s.css" $.Site.Params.ThemeColor) | absURL }}">
 {{ end }}
