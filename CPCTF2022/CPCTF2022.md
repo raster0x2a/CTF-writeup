@@ -34,7 +34,7 @@ Docker Imageがあるので問題文にあるように素直に`docker load -i i
 
 ## Eagle
 
-zipファイルがあるので解凍してみると特徴的な拡張子のファイルがいくつかあります。拡張子で検索にかけてみると、どうやらEagleとはフリーの基板開発CADソフトウェアらしいということが分かります。フリーなのでEagleをインストールしてもよいですが、面倒なのでオンラインでガーバーファイルを表示できる[Online Gerber Viewer](https://www.gerber-viewer.com/)というものを使って見てみるとフラグがありました。
+zipファイルがあるので解凍してみると特徴的な拡張子のファイルがいくつかあります。拡張子で検索にかけてみると、どうやらEagleとはフリーの基板開発CADソフトらしいということが分かります。フリーなのでEagleをインストールしてもよいですが、面倒なのでオンラインでガーバーファイルを表示できる[Online Gerber Viewer](https://www.gerber-viewer.com/)というものを使って見てみるとフラグがありました。
 
 ## Welcome to OSINT! 1
 
@@ -42,7 +42,7 @@ Googleレンズを使うと俺流塩ラーメンっぽいというところま�
 
 ## POST!ME!
 
-ソースコードを見てみるとPOSTメソッドを投げるとフラグの前半、DLETEメソッドで後半が得られるようです。curlを使い`curl -X POST https://postme.cpctf.space/ -d '{"password":"pass"}' -H 'Content-Type:application/json'`、`curl -X DELETE https://postme.cpctf.space/`を投げると貰えます。注意点として、HeaderでJSONを正しく指定しないと400が返されてフラグが貰えません。
+ソースコードを見てみるとPOSTメソッドを投げるとフラグの前半、DLETEメソッドで後半が得られるようです。curlを使い`curl -X POST https://postme.cpctf.space/ -d '{"password":"pass"}' -H 'Content-Type:application/json'`、`curl -X DELETE https://postme.cpctf.space/`を投げると貰えます。注意点として、POSTのときはHeaderでJSON形式であることを正しく指定しないと400が返されてフラグが貰えません。
 
 ## Robots
 
@@ -50,7 +50,8 @@ Googleレンズを使うと俺流塩ラーメンっぽいというところま�
 
 ## Smash Stack
 
-retaddrを書き換えてwin関数に飛ばす簡単なBOFを使ったROPです。最初頭が悪くて手元で`gcc vuln.c -o vuln`したセキュリティ機構全装備の実行ファイルを使って上手くいかないなと時間を溶かしまくっていました。サーバーにあるものはセキュリティ機構が外されており、素直にwinに飛ばしてシェルを奪うことができるのでflagが確認できます。
+retaddrを書き換えてwin関数に飛ばす簡単なBOFを使ったROPです。最初頭が悪くて手元で`gcc vuln.c -o vuln`したセキュリティ機構全装備の実行ファイルを使って上手くいかないなと時間を溶かしまくっていました。サーバーにあるものはセキュリティ機構が外されており、素直にwinに飛ばしてシェルを奪うことができるのでflagが確認できます。  
+以下は雑ソルバです。
 
 ```py
 from pwn import *
