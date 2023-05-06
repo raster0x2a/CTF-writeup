@@ -5,3 +5,4 @@
 - [picoCTF 2022](https://raster0x2a.github.io/CTF-writeup/picoCTF2022/picoCTF2022)
 - [CPCTF 2022](https://raster0x2a.github.io/CTF-writeup/CPCTF2022/CPCTF2022)
 - [TSG Live! 8 CTF](https://raster0x2a.github.io/CTF-writeup/TSGLive8CTF/TSGLive8CTF)
+- [WaniCTF 2023](https://raster0x2a.github.io/CTF-writeup/WaniCTF2023/WaniCTF2023)
