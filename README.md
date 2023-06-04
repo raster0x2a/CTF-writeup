@@ -6,4 +6,4 @@
 - [CPCTF 2022](https://raster0x2a.github.io/CTF-writeup/CPCTF2022/CPCTF2022)
 - [TSG Live! 8 CTF](https://raster0x2a.github.io/CTF-writeup/TSGLive8CTF/TSGLive8CTF)
 - [WaniCTF 2023](https://raster0x2a.github.io/CTF-writeup/WaniCTF2023/WaniCTF2023)
-- [SECCON Beginners CTF 2023](https://raster0x2a.github.io/CTF-writeup/SECCON%20Beginners%20CTF%202023/SECCON%20Beginners%20CTF%202023)
+- [SECCON Beginners CTF 2023](https://raster0x2a.github.io/CTF-writeup/SECCON%20Beginners%20CTF02023/SECCON%20Beginners%20CTF02023)
