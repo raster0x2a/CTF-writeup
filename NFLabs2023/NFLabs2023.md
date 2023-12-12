@@ -37,7 +37,7 @@
 
 まず「whois history」などで検索していたらWHOIS Historyなるサービスがいくつか見つかったが、どれも有料のものが多く、無料のものを試しても回答を得ることはできなかった。  
 Wayback Machineを使う方法を思い付き、試してみると最も古いページで1997年1月17日のものが見つかる。そのページを確認すると企業名らしき「National TechTeam, Inc.」が見つかる。  
-1997年1月17日のntt.comのページ: https://web.archive.org/web/19970117135312/http://www.ntt.com/
+1997年1月17日のntt.comのページ: [National TechTeam](https://web.archive.org/web/19970117135312/http://www.ntt.com/)
 
 ### [Medium] stranger than fiction
 
@@ -48,7 +48,7 @@ Wayback Machineを使う方法を思い付き、試してみると最も古い�
 まずDavid Braun氏について調べると、ウクライナの国会議員であることがわかる。ここで、私は"ある著名な元俳優"がゼレンスキー大統領であるとguessingして進めてしまったので、5名で撮ったSNSの動画は探していない。  
 ゼレンスキー大統領の代表作『国民の僕』がYouTubeで無料公開されていたので冒頭部分を確認する。映っている記念碑をGoogle Lensで検索すると、キエフにある「Independence Monument」であるとわかる。Google Mapで探し、回答形式に合わせて`N50.4,E30.5`。
 
-『国民の僕』: https://youtu.be/GZ-3YwVQV0M?si=0k5ITaBsRKb_OJFm
+『国民の僕』: [(183) Сериал Слуга народа - 1 и 2 серии | Премьера комедии 2015 - YouTube](https://youtu.be/GZ-3YwVQV0M?si=0k5ITaBsRKb_OJFm)
 
 ### [Medium] Repair
 
@@ -69,8 +69,8 @@ Google Lensを使って画像検索をすると、スペインにある聖ジョ
 ![](https://www.footballfanflags.co.uk/cdn/shop/files/football-flag-6ft-x-3ft-183cm-x-91cm-football-fan-flags.png?v=1691192683&width=493)  
 ロゴの上部にMIDDLESBROUGHの文字があり、調べるとこれがクラブ名であることがわかる。
 
-ニコニコ動画上にある動画: https://www.nicovideo.jp/watch/sm41418615
-横断幕の画像のあったページ: https://www.footballfanflags.co.uk/products/football-flag-6ft-x-3ft-183cm-x-91cm-2
+ニコニコ動画上にある動画: [ブラジル 2 - 0 セルビア || 2022 ワールドカップ - ニコニコ動画](https://www.nicovideo.jp/watch/sm41418615)  
+横断幕の画像のあったページ: [Football Flag 6ft x 3ft (183cm x 91cm)\n – Football Fan Flags](https://www.footballfanflags.co.uk/products/football-flag-6ft-x-3ft-183cm-x-91cm-2)  
 
 
 ## DFIR
@@ -318,7 +318,7 @@ XMLファイルをアップロードすることでXXEを行うことを考え�
 
 SVGファイルでのXSSができるか試したところ上手くいかなかったが、HTMLファイルをアップロードすると`text/html`としてレスポンスを返せるためXSSができることを発見したが、管理者にブラウザ等でアクセスさせる方法が特になく、悪用は難しいと考えた。
 
-参考にしたサイト: https://securinglaravel.com/p/laravel-security-file-upload-vulnerability
+参考にしたサイト: [Laravel Security: File Upload Vulnerability](https://securinglaravel.com/p/laravel-security-file-upload-vulnerability)
 
 事前にFirst Blood賞対象の問題が一定の期日までに誰にも解かれなかった場合ヒントが公開されるというルールがあり、以下のヒントが公開された。
 
