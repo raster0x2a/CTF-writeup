@@ -7,3 +7,4 @@
 - [TSG Live! 8 CTF](https://raster0x2a.github.io/CTF-writeup/TSGLive8CTF/TSGLive8CTF)
 - [WaniCTF 2023](https://raster0x2a.github.io/CTF-writeup/WaniCTF2023/WaniCTF2023)
 - [SECCON Beginners CTF 2023](https://raster0x2a.github.io/CTF-writeup/SECCON%20Beginners%20CTF2023/SECCON%20Beginners%20CTF2023)
+- [NFLabs. Cybersecurity Challenge for Students 2023](https://raster0x2a.github.io/CTF-writeup/NFLabs2023/NFLabs2023)
