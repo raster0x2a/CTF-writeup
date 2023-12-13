@@ -48,7 +48,7 @@ Wayback Machineを使う方法を思い付き、試してみると最も古い�
 まずDavid Braun氏について調べると、ウクライナの国会議員であることがわかる。ここで、私は"ある著名な元俳優"がゼレンスキー大統領であるとguessingして進めてしまったので、5名で撮ったSNSの動画は探していない。  
 ゼレンスキー大統領の代表作『国民の僕』がYouTubeで無料公開されていたので冒頭部分を確認する。映っている記念碑をGoogle Lensで検索すると、キエフにある「Independence Monument」であるとわかる。Google Mapで探し、回答形式に合わせて`N50.4,E30.5`。
 
-『国民の僕』: [(183) Сериал Слуга народа - 1 и 2 серии | Премьера комедии 2015 - YouTube](https://youtu.be/GZ-3YwVQV0M?si=0k5ITaBsRKb_OJFm)
+『国民の僕』: [(183) Сериал Слуга народа - 1 и 2 серии \| Премьера комедии 2015 - YouTube](https://youtu.be/GZ-3YwVQV0M)
 
 ### [Medium] Repair
 
